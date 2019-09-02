@@ -1,0 +1,1161 @@
+{
+    "pipelineName": "go_service",
+    "paused": "false",
+    "pauseCause": "",
+    "pauseBy": "",
+    "canForce": "true",
+    "nextLabel": "",
+    "groups": [
+        {
+            "config": {
+                "stages": [
+                    {
+                        "name": "code-scan",
+                        "isAutoApproved": "true"
+                    },
+                    {
+                        "name": "test-integration",
+                        "isAutoApproved": "true"
+                    },
+                    {
+                        "name": "build",
+                        "isAutoApproved": "true"
+                    },
+                    {
+                        "name": "flyway-qa",
+                        "isAutoApproved": "false"
+                    },
+                    {
+                        "name": "deploy-qa",
+                        "isAutoApproved": "false"
+                    }
+                ]
+            },
+            "history": [
+                {
+                    "pipelineId": 80936,
+                    "label": "216",
+                    "counterOrLabel": "216",
+                    "scheduled_date": "29 Aug, 2019 at 10:36:10 [+0000]",
+                    "scheduled_timestamp": 1567074970101,
+                    "buildCauseBy": "Triggered by rldan",
+                    "modification_date": "3 days ago",
+                    "materialRevisions": [
+                        {
+                            "revision": "78655d8aa3489561019d10f7eb0cf2ccaa810506",
+                            "revision_href": "78655d8aa3489561019d10f7eb0cf2ccaa810506",
+                            "user": "rldan <rldan@test.com>",
+                            "date": "2019-08-29T10:20:37Z",
+                            "changed": "false",
+                            "modifications": [
+                                {
+                                    "user": "rldan <rldan@test.com>",
+                                    "revision": "78655d8aa3489561019d10f7eb0cf2ccaa810506",
+                                    "date": "2019-08-29T10:20:37Z",
+                                    "comment": "[rldan] #AC-236 docs: add readme and out-of-order for flyway script",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "app",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/accounting.git",
+                            "materialName": "app-repo",
+                            "action": "Modified"
+                        },
+                        {
+                            "revision": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                            "revision_href": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                            "user": "Huang Yaming <yumminhuang@test.com>",
+                            "date": "2019-08-29T06:36:09Z",
+                            "changed": "false",
+                            "modifications": [
+                                {
+                                    "user": "Huang Yaming <yumminhuang@test.com>",
+                                    "revision": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                                    "date": "2019-08-29T06:36:09Z",
+                                    "comment": "[shaoshuai] #N/A Remove SPRING_PROFILES_ACTIVE for order/stock tests",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "buildtools",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/buildtools.git",
+                            "materialName": "devops-buildtools",
+                            "action": "Modified"
+                        }
+                    ],
+                    "stages": [
+                        {
+                            "stageName": "code-scan",
+                            "stageId": 216917,
+                            "stageStatus": "Cancelled",
+                            "stageLocator": "go_service/216/code-scan/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "rldan"
+                        },
+                        {
+                            "stageName": "test-integration",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/216/test-integration/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "build",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/216/build/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "flyway-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/216/flyway-qa/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "deploy-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/216/deploy-qa/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        }
+                    ],
+                    "revision": "78655d8aa3489561019d10f7eb0cf2ccaa810506",
+                    "comment": null
+                },
+                {
+                    "pipelineId": 80935,
+                    "label": "215",
+                    "counterOrLabel": "215",
+                    "scheduled_date": "29 Aug, 2019 at 10:35:36 [+0000]",
+                    "scheduled_timestamp": 1567074936331,
+                    "buildCauseBy": "Triggered by rldan",
+                    "modification_date": "3 days ago",
+                    "materialRevisions": [
+                        {
+                            "revision": "78655d8aa3489561019d10f7eb0cf2ccaa810506",
+                            "revision_href": "78655d8aa3489561019d10f7eb0cf2ccaa810506",
+                            "user": "rldan <rldan@test.com>",
+                            "date": "2019-08-29T10:20:37Z",
+                            "changed": "false",
+                            "modifications": [
+                                {
+                                    "user": "rldan <rldan@test.com>",
+                                    "revision": "78655d8aa3489561019d10f7eb0cf2ccaa810506",
+                                    "date": "2019-08-29T10:20:37Z",
+                                    "comment": "[rldan] #AC-236 docs: add readme and out-of-order for flyway script",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "app",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/accounting.git",
+                            "materialName": "app-repo",
+                            "action": "Modified"
+                        },
+                        {
+                            "revision": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                            "revision_href": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                            "user": "Huang Yaming <yumminhuang@test.com>",
+                            "date": "2019-08-29T06:36:09Z",
+                            "changed": "false",
+                            "modifications": [
+                                {
+                                    "user": "Huang Yaming <yumminhuang@test.com>",
+                                    "revision": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                                    "date": "2019-08-29T06:36:09Z",
+                                    "comment": "[shaoshuai] #N/A Remove SPRING_PROFILES_ACTIVE for order/stock tests",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "buildtools",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/buildtools.git",
+                            "materialName": "devops-buildtools",
+                            "action": "Modified"
+                        }
+                    ],
+                    "stages": [
+                        {
+                            "stageName": "code-scan",
+                            "stageId": 216914,
+                            "stageStatus": "Cancelled",
+                            "stageLocator": "go_service/215/code-scan/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "rldan"
+                        },
+                        {
+                            "stageName": "test-integration",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/215/test-integration/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "build",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/215/build/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "flyway-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/215/flyway-qa/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "deploy-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/215/deploy-qa/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        }
+                    ],
+                    "revision": "78655d8aa3489561019d10f7eb0cf2ccaa810506",
+                    "comment": null
+                },
+                {
+                    "pipelineId": 80928,
+                    "label": "214",
+                    "counterOrLabel": "214",
+                    "scheduled_date": "29 Aug, 2019 at 10:26:17 [+0000]",
+                    "scheduled_timestamp": 1567074377193,
+                    "buildCauseBy": "Triggered by changes",
+                    "modification_date": "3 days ago",
+                    "materialRevisions": [
+                        {
+                            "revision": "78655d8aa3489561019d10f7eb0cf2ccaa810506",
+                            "revision_href": "78655d8aa3489561019d10f7eb0cf2ccaa810506",
+                            "user": "rldan <rldan@test.com>",
+                            "date": "2019-08-29T10:20:37Z",
+                            "changed": "true",
+                            "modifications": [
+                                {
+                                    "user": "rldan <rldan@test.com>",
+                                    "revision": "78655d8aa3489561019d10f7eb0cf2ccaa810506",
+                                    "date": "2019-08-29T10:20:37Z",
+                                    "comment": "[rldan] #AC-236 docs: add readme and out-of-order for flyway script",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "app",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/accounting.git",
+                            "materialName": "app-repo",
+                            "action": "Modified"
+                        },
+                        {
+                            "revision": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                            "revision_href": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                            "user": "Huang Yaming <yumminhuang@test.com>",
+                            "date": "2019-08-29T06:36:09Z",
+                            "changed": "false",
+                            "modifications": [
+                                {
+                                    "user": "Huang Yaming <yumminhuang@test.com>",
+                                    "revision": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                                    "date": "2019-08-29T06:36:09Z",
+                                    "comment": "[shaoshuai] #N/A Remove SPRING_PROFILES_ACTIVE for order/stock tests",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "buildtools",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/buildtools.git",
+                            "materialName": "devops-buildtools",
+                            "action": "Modified"
+                        }
+                    ],
+                    "stages": [
+                        {
+                            "stageName": "code-scan",
+                            "stageId": 216891,
+                            "stageStatus": "Failed",
+                            "stageLocator": "go_service/214/code-scan/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "test-integration",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/214/test-integration/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "build",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/214/build/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "flyway-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/214/flyway-qa/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "deploy-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/214/deploy-qa/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        }
+                    ],
+                    "revision": "78655d8aa3489561019d10f7eb0cf2ccaa810506",
+                    "comment": null
+                },
+                {
+                    "pipelineId": 80901,
+                    "label": "213",
+                    "counterOrLabel": "213",
+                    "scheduled_date": "29 Aug, 2019 at 09:35:12 [+0000]",
+                    "scheduled_timestamp": 1567071312949,
+                    "buildCauseBy": "Triggered by changes",
+                    "modification_date": "3 days ago",
+                    "materialRevisions": [
+                        {
+                            "revision": "abee83c49ed71b2d36cc4f3ed26bf6e59a966c4b",
+                            "revision_href": "abee83c49ed71b2d36cc4f3ed26bf6e59a966c4b",
+                            "user": "rldan <rldan@test.com>",
+                            "date": "2019-08-29T09:32:24Z",
+                            "changed": "true",
+                            "modifications": [
+                                {
+                                    "user": "rldan <rldan@test.com>",
+                                    "revision": "abee83c49ed71b2d36cc4f3ed26bf6e59a966c4b",
+                                    "date": "2019-08-29T09:32:24Z",
+                                    "comment": "[rldan] #AC-236 refactor: refactor the validator in sales type service",
+                                    "modifiedFiles": []
+                                },
+                                {
+                                    "user": "rldan <rldan@test.com>",
+                                    "revision": "f5040cf0b58aab3c5dc1b78142c768e9a4ed47f9",
+                                    "date": "2019-08-29T09:23:31Z",
+                                    "comment": "[rldan] #AC-236 chore: make the mapping pojo and jpa conventer be not in test coverage",
+                                    "modifiedFiles": []
+                                },
+                                {
+                                    "user": "rldan <rldan@test.com>",
+                                    "revision": "f4e5039165a1d733581dbe5d03755102f2a58620",
+                                    "date": "2019-08-29T08:27:20Z",
+                                    "comment": "[rldan] #AC-236 test: add the unit test for sales type import service",
+                                    "modifiedFiles": []
+                                },
+                                {
+                                    "user": "rldan <rldan@test.com>",
+                                    "revision": "673fddbe6cb6f70b1756423f899fa6fa27865d15",
+                                    "date": "2019-08-29T03:30:59Z",
+                                    "comment": "[rldan] #AC-236 feat: add the sales type mapping service logic",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "app",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/accounting.git",
+                            "materialName": "app-repo",
+                            "action": "Modified"
+                        },
+                        {
+                            "revision": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                            "revision_href": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                            "user": "Huang Yaming <yumminhuang@test.com>",
+                            "date": "2019-08-29T06:36:09Z",
+                            "changed": "false",
+                            "modifications": [
+                                {
+                                    "user": "Huang Yaming <yumminhuang@test.com>",
+                                    "revision": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                                    "date": "2019-08-29T06:36:09Z",
+                                    "comment": "[shaoshuai] #N/A Remove SPRING_PROFILES_ACTIVE for order/stock tests",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "buildtools",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/buildtools.git",
+                            "materialName": "devops-buildtools",
+                            "action": "Modified"
+                        }
+                    ],
+                    "stages": [
+                        {
+                            "stageName": "code-scan",
+                            "stageId": 216827,
+                            "stageStatus": "Failed",
+                            "stageLocator": "go_service/213/code-scan/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "test-integration",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/213/test-integration/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "build",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/213/build/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "flyway-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/213/flyway-qa/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "deploy-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/213/deploy-qa/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        }
+                    ],
+                    "revision": "abee83c49ed71b2d36cc4f3ed26bf6e59a966c4b",
+                    "comment": null
+                },
+                {
+                    "pipelineId": 80842,
+                    "label": "212",
+                    "counterOrLabel": "212",
+                    "scheduled_date": "29 Aug, 2019 at 08:02:11 [+0000]",
+                    "scheduled_timestamp": 1567065731544,
+                    "buildCauseBy": "Triggered by changes",
+                    "modification_date": "3 days ago",
+                    "materialRevisions": [
+                        {
+                            "revision": "9e23c0a3a0a7dedbefd68666f1f2ac912a4d791e",
+                            "revision_href": "9e23c0a3a0a7dedbefd68666f1f2ac912a4d791e",
+                            "user": "He Zhong <zhong.he@test.com>",
+                            "date": "2019-08-29T07:49:50Z",
+                            "changed": "true",
+                            "modifications": [
+                                {
+                                    "user": "He Zhong <zhong.he@test.com>",
+                                    "revision": "9e23c0a3a0a7dedbefd68666f1f2ac912a4d791e",
+                                    "date": "2019-08-29T07:49:50Z",
+                                    "comment": "[HeZhong] #N/A fix: fix test for invoice print service.",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "app",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/accounting.git",
+                            "materialName": "app-repo",
+                            "action": "Modified"
+                        },
+                        {
+                            "revision": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                            "revision_href": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                            "user": "Huang Yaming <yumminhuang@test.com>",
+                            "date": "2019-08-29T06:36:09Z",
+                            "changed": "false",
+                            "modifications": [
+                                {
+                                    "user": "Huang Yaming <yumminhuang@test.com>",
+                                    "revision": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                                    "date": "2019-08-29T06:36:09Z",
+                                    "comment": "[shaoshuai] #N/A Remove SPRING_PROFILES_ACTIVE for order/stock tests",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "buildtools",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/buildtools.git",
+                            "materialName": "devops-buildtools",
+                            "action": "Modified"
+                        }
+                    ],
+                    "stages": [
+                        {
+                            "stageName": "code-scan",
+                            "stageId": 216659,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/212/code-scan/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "test-integration",
+                            "stageId": 216671,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/212/test-integration/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "build",
+                            "stageId": 216680,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/212/build/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "flyway-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/212/flyway-qa/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "deploy-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/212/deploy-qa/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        }
+                    ],
+                    "revision": "9e23c0a3a0a7dedbefd68666f1f2ac912a4d791e",
+                    "comment": null
+                },
+                {
+                    "pipelineId": 80827,
+                    "label": "211",
+                    "counterOrLabel": "211",
+                    "scheduled_date": "29 Aug, 2019 at 07:41:11 [+0000]",
+                    "scheduled_timestamp": 1567064471036,
+                    "buildCauseBy": "Triggered by changes",
+                    "modification_date": "3 days ago",
+                    "materialRevisions": [
+                        {
+                            "revision": "29712cab3433c25fb974ab165a148e557eaafd9a",
+                            "revision_href": "29712cab3433c25fb974ab165a148e557eaafd9a",
+                            "user": "pengtao.qiu <qptkk@163.com>",
+                            "date": "2019-08-29T07:36:41Z",
+                            "changed": "true",
+                            "modifications": [
+                                {
+                                    "user": "pengtao.qiu <qptkk@163.com>",
+                                    "revision": "29712cab3433c25fb974ab165a148e557eaafd9a",
+                                    "date": "2019-08-29T07:36:41Z",
+                                    "comment": "[Pengtao Qiu] #AC-80 fix: handle the invalid parameter",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "app",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/accounting.git",
+                            "materialName": "app-repo",
+                            "action": "Modified"
+                        },
+                        {
+                            "revision": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                            "revision_href": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                            "user": "Huang Yaming <yumminhuang@test.com>",
+                            "date": "2019-08-29T06:36:09Z",
+                            "changed": "true",
+                            "modifications": [
+                                {
+                                    "user": "Huang Yaming <yumminhuang@test.com>",
+                                    "revision": "728247afb29abbbc7927dcd29bf00d92f3802853",
+                                    "date": "2019-08-29T06:36:09Z",
+                                    "comment": "[shaoshuai] #N/A Remove SPRING_PROFILES_ACTIVE for order/stock tests",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "buildtools",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/buildtools.git",
+                            "materialName": "devops-buildtools",
+                            "action": "Modified"
+                        }
+                    ],
+                    "stages": [
+                        {
+                            "stageName": "code-scan",
+                            "stageId": 216620,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/211/code-scan/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "test-integration",
+                            "stageId": 216626,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/211/test-integration/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "build",
+                            "stageId": 216634,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/211/build/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "flyway-qa",
+                            "stageId": 216638,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/211/flyway-qa/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "AlvinQiu"
+                        },
+                        {
+                            "stageName": "deploy-qa",
+                            "stageId": 216643,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/211/deploy-qa/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "AlvinQiu"
+                        }
+                    ],
+                    "revision": "29712cab3433c25fb974ab165a148e557eaafd9a",
+                    "comment": null
+                },
+                {
+                    "pipelineId": 80753,
+                    "label": "210",
+                    "counterOrLabel": "210",
+                    "scheduled_date": "29 Aug, 2019 at 04:26:19 [+0000]",
+                    "scheduled_timestamp": 1567052779277,
+                    "buildCauseBy": "Triggered by changes",
+                    "modification_date": "3 days ago",
+                    "materialRevisions": [
+                        {
+                            "revision": "5f26e841a86f18506b81bcea80b722e01ed884a1",
+                            "revision_href": "5f26e841a86f18506b81bcea80b722e01ed884a1",
+                            "user": "pengtao.qiu <qptkk@163.com>",
+                            "date": "2019-08-29T04:24:15Z",
+                            "changed": "true",
+                            "modifications": [
+                                {
+                                    "user": "pengtao.qiu <qptkk@163.com>",
+                                    "revision": "5f26e841a86f18506b81bcea80b722e01ed884a1",
+                                    "date": "2019-08-29T04:24:15Z",
+                                    "comment": "[Pengtao Qiu] #AC-93 fix: set check date when the status is after verification.",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "app",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/accounting.git",
+                            "materialName": "app-repo",
+                            "action": "Modified"
+                        },
+                        {
+                            "revision": "25db698861e8e7fc463d509983c510f94020e96e",
+                            "revision_href": "25db698861e8e7fc463d509983c510f94020e96e",
+                            "user": "wjyan <wjyan@test.com>",
+                            "date": "2019-08-26T09:17:54Z",
+                            "changed": "false",
+                            "modifications": [
+                                {
+                                    "user": "wjyan <wjyan@test.com>",
+                                    "revision": "25db698861e8e7fc463d509983c510f94020e96e",
+                                    "date": "2019-08-26T09:17:54Z",
+                                    "comment": "[weijin] #N/A modify test scripts to run order/stock contract tests correctly",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "buildtools",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/buildtools.git",
+                            "materialName": "devops-buildtools",
+                            "action": "Modified"
+                        }
+                    ],
+                    "stages": [
+                        {
+                            "stageName": "code-scan",
+                            "stageId": 216402,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/210/code-scan/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "test-integration",
+                            "stageId": 216403,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/210/test-integration/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "build",
+                            "stageId": 216405,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/210/build/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "flyway-qa",
+                            "stageId": 216421,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/210/flyway-qa/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "AlvinQiu"
+                        },
+                        {
+                            "stageName": "deploy-qa",
+                            "stageId": 216422,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/210/deploy-qa/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "AlvinQiu"
+                        }
+                    ],
+                    "revision": "5f26e841a86f18506b81bcea80b722e01ed884a1",
+                    "comment": null
+                },
+                {
+                    "pipelineId": 80737,
+                    "label": "209",
+                    "counterOrLabel": "209",
+                    "scheduled_date": "29 Aug, 2019 at 03:53:19 [+0000]",
+                    "scheduled_timestamp": 1567050799917,
+                    "buildCauseBy": "Triggered by changes",
+                    "modification_date": "3 days ago",
+                    "materialRevisions": [
+                        {
+                            "revision": "799de13bd60fc2d5c5565845a46088ca2ddcc472",
+                            "revision_href": "799de13bd60fc2d5c5565845a46088ca2ddcc472",
+                            "user": "pengtao.qiu <qptkk@163.com>",
+                            "date": "2019-08-29T03:44:49Z",
+                            "changed": "true",
+                            "modifications": [
+                                {
+                                    "user": "pengtao.qiu <qptkk@163.com>",
+                                    "revision": "799de13bd60fc2d5c5565845a46088ca2ddcc472",
+                                    "date": "2019-08-29T03:44:49Z",
+                                    "comment": "[Pengtao Qiu] #N/A test: check the data save successfully.",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "app",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/accounting.git",
+                            "materialName": "app-repo",
+                            "action": "Modified"
+                        },
+                        {
+                            "revision": "25db698861e8e7fc463d509983c510f94020e96e",
+                            "revision_href": "25db698861e8e7fc463d509983c510f94020e96e",
+                            "user": "wjyan <wjyan@test.com>",
+                            "date": "2019-08-26T09:17:54Z",
+                            "changed": "false",
+                            "modifications": [
+                                {
+                                    "user": "wjyan <wjyan@test.com>",
+                                    "revision": "25db698861e8e7fc463d509983c510f94020e96e",
+                                    "date": "2019-08-26T09:17:54Z",
+                                    "comment": "[weijin] #N/A modify test scripts to run order/stock contract tests correctly",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "buildtools",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/buildtools.git",
+                            "materialName": "devops-buildtools",
+                            "action": "Modified"
+                        }
+                    ],
+                    "stages": [
+                        {
+                            "stageName": "code-scan",
+                            "stageId": 216355,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/209/code-scan/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "test-integration",
+                            "stageId": 216359,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/209/test-integration/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "build",
+                            "stageId": 216372,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/209/build/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "flyway-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/209/flyway-qa/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "deploy-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/209/deploy-qa/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        }
+                    ],
+                    "revision": "799de13bd60fc2d5c5565845a46088ca2ddcc472",
+                    "comment": null
+                },
+                {
+                    "pipelineId": 80729,
+                    "label": "208",
+                    "counterOrLabel": "208",
+                    "scheduled_date": "29 Aug, 2019 at 03:41:18 [+0000]",
+                    "scheduled_timestamp": 1567050078426,
+                    "buildCauseBy": "Triggered by changes",
+                    "modification_date": "3 days ago",
+                    "materialRevisions": [
+                        {
+                            "revision": "c066f5961c6184b368b3745b9c799cbe33f57eff",
+                            "revision_href": "c066f5961c6184b368b3745b9c799cbe33f57eff",
+                            "user": "pengtao.qiu <qptkk@163.com>",
+                            "date": "2019-08-29T03:36:32Z",
+                            "changed": "true",
+                            "modifications": [
+                                {
+                                    "user": "pengtao.qiu <qptkk@163.com>",
+                                    "revision": "c066f5961c6184b368b3745b9c799cbe33f57eff",
+                                    "date": "2019-08-29T03:36:32Z",
+                                    "comment": "[Pengtao Qiu] #AC-93 fix: it can not update when the status is after verification.",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "app",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/accounting.git",
+                            "materialName": "app-repo",
+                            "action": "Modified"
+                        },
+                        {
+                            "revision": "25db698861e8e7fc463d509983c510f94020e96e",
+                            "revision_href": "25db698861e8e7fc463d509983c510f94020e96e",
+                            "user": "wjyan <wjyan@test.com>",
+                            "date": "2019-08-26T09:17:54Z",
+                            "changed": "false",
+                            "modifications": [
+                                {
+                                    "user": "wjyan <wjyan@test.com>",
+                                    "revision": "25db698861e8e7fc463d509983c510f94020e96e",
+                                    "date": "2019-08-26T09:17:54Z",
+                                    "comment": "[weijin] #N/A modify test scripts to run order/stock contract tests correctly",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "buildtools",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/buildtools.git",
+                            "materialName": "devops-buildtools",
+                            "action": "Modified"
+                        }
+                    ],
+                    "stages": [
+                        {
+                            "stageName": "code-scan",
+                            "stageId": 216335,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/208/code-scan/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "test-integration",
+                            "stageId": 216340,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/208/test-integration/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "build",
+                            "stageId": 216345,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/208/build/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "flyway-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/208/flyway-qa/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "deploy-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/208/deploy-qa/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        }
+                    ],
+                    "revision": "c066f5961c6184b368b3745b9c799cbe33f57eff",
+                    "comment": null
+                },
+                {
+                    "pipelineId": 80721,
+                    "label": "207",
+                    "counterOrLabel": "207",
+                    "scheduled_date": "29 Aug, 2019 at 03:26:19 [+0000]",
+                    "scheduled_timestamp": 1567049179204,
+                    "buildCauseBy": "Triggered by changes",
+                    "modification_date": "3 days ago",
+                    "materialRevisions": [
+                        {
+                            "revision": "98912a25e498deb01dabe935f5be7035771c8661",
+                            "revision_href": "98912a25e498deb01dabe935f5be7035771c8661",
+                            "user": "pengtao.qiu <qptkk@163.com>",
+                            "date": "2019-08-29T03:20:39Z",
+                            "changed": "true",
+                            "modifications": [
+                                {
+                                    "user": "pengtao.qiu <qptkk@163.com>",
+                                    "revision": "98912a25e498deb01dabe935f5be7035771c8661",
+                                    "date": "2019-08-29T03:20:39Z",
+                                    "comment": "[Pengtao Qiu] #AC-80 fix: the parts invoice detail does not query the supplier number detail.",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "app",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/accounting.git",
+                            "materialName": "app-repo",
+                            "action": "Modified"
+                        },
+                        {
+                            "revision": "25db698861e8e7fc463d509983c510f94020e96e",
+                            "revision_href": "25db698861e8e7fc463d509983c510f94020e96e",
+                            "user": "wjyan <wjyan@test.com>",
+                            "date": "2019-08-26T09:17:54Z",
+                            "changed": "false",
+                            "modifications": [
+                                {
+                                    "user": "wjyan <wjyan@test.com>",
+                                    "revision": "25db698861e8e7fc463d509983c510f94020e96e",
+                                    "date": "2019-08-26T09:17:54Z",
+                                    "comment": "[weijin] #N/A modify test scripts to run order/stock contract tests correctly",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "buildtools",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/buildtools.git",
+                            "materialName": "devops-buildtools",
+                            "action": "Modified"
+                        }
+                    ],
+                    "stages": [
+                        {
+                            "stageName": "code-scan",
+                            "stageId": 216303,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/207/code-scan/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "test-integration",
+                            "stageId": 216307,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/207/test-integration/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "build",
+                            "stageId": 216315,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/207/build/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "flyway-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/207/flyway-qa/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        },
+                        {
+                            "stageName": "deploy-qa",
+                            "stageId": 0,
+                            "stageStatus": "Unknown",
+                            "stageLocator": "go_service/207/deploy-qa/1",
+                            "getCanRun": "false",
+                            "getCanCancel": "false",
+                            "scheduled": "false",
+                            "stageCounter": "1"
+                        }
+                    ],
+                    "revision": "98912a25e498deb01dabe935f5be7035771c8661",
+                    "comment": null
+                }
+            ]
+        }
+    ],
+    "forcedBuild": "false",
+    "showForceBuildButton": "false",
+    "canPause": "true",
+    "count": 226,
+    "start": 10,
+    "perPage": 10
+}
