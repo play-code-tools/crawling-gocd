@@ -1,0 +1,6 @@
+pipeline_names:
+  - accounting-plus-master
+
+global:
+  start_time: 2019-07-01 00:00:00
+  end_time: 2019-08-12 23:59:59

@@ -55,16 +55,4 @@ class Crawler:
         scheduledTimestatmps = list(map(lambda x: int(x["scheduled_timestamp"]), pipelines))
         return min(scheduledTimestatmps) < time.mktime(startTime)
 
-    # def getBuilds(self, pipeline):
-    #     return self.getResource("/go/api/pipelines/{}/history".format(pipeline.name), pipeline.counter)
-
-    # def updatePipelineBuilds(self, pipelines):
-    #     directory = self.path + "/" + datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-    #     if not os.path.exists(directory):
-    #         os.makedirs(directory)
-    #     for i in pipelines:
-    #         builds = self.getBuilds(i)
-    #         if len(builds) > 0:
-    #             with open("{}/{}.json".format(directory, i.name), 'w', encoding='utf8') as file:
-    #                 json.dump(builds, file)
-    #     return directory
+    

@@ -2,7 +2,6 @@ import os
 import unittest
 import json
 import time
-from operator import attrgetter
 from crawling_gocd.gocd_domain import Organization 
 from crawling_gocd.crawler import Crawler 
 from unittest.mock import MagicMock
