@@ -11,6 +11,6 @@ class CrawlingPipelineHistoryTest(unittest.TestCase):
         self.crawler = Crawler(self.orgnization)
 
     def test_should_return_pipelines_correctly(self):
-        pipelines = self.crawler.getPipelineHistory(
+        pipelines = self.crawler.getPipelineHistories(
             "accounting-plus-master", time.localtime(1567052779277), time.localtime(1567335377730))
         self.assertEqual(len(pipelines), 16)

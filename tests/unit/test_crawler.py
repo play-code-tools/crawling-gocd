@@ -54,7 +54,7 @@ class CrawlerTest(unittest.TestCase):
                 return json.load(f)
             
         self.crawler.getResource = MagicMock(side_effect=side_effect)
-        pipelines = self.crawler.getPipelineHistory("go_service", time.localtime(1567052779277), time.localtime(1567335377730))
+        pipelines = self.crawler.getPipelineHistories("go_service", time.localtime(1567052779277), time.localtime(1567335377730))
         self.assertEqual(len(pipelines), 16)
 
 if __name__ == '__main__':

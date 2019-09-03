@@ -11,3 +11,10 @@ class InputsCalcConfig:
 class CalculateStrategyHandle:
     def calculate(self, pipelines):
         pass
+
+class Result:
+    def __init__(self, pipelineName, metricsName, groupName, value):
+        self.pipelineName = pipelineName
+        self.metricsName = metricsName
+        self.groupName = groupName
+        self.value = value

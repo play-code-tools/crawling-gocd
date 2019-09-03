@@ -23,7 +23,7 @@ class Crawler:
             url = url + "&start={}".format(start)
         return url
 
-    def getPipelineHistory(self, pipelineName, startTime, endTime):
+    def getPipelineHistories(self, pipelineName, startTime, endTime):
         if startTime > endTime:
             return []
         offset, data = 0, []

@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "d0af1378630f249688d4bfea8ae7d1d204bcb527f13234ae4404f5460eea90a2"
+            "sha256": "275792291c47c925ea0172943645b594c8ef895265dedb63e4e2a9b713d57cc5"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -58,11 +58,24 @@
             ],
             "version": "==1.1.0"
         },
+        "dill": {
+            "hashes": [
+                "sha256:431c9d46e190dcdf1397234cf659d66e2e22e33b0474ed6ee2d0b16c9c0ea319",
+                "sha256:e82b3db7b9d962911c9c2d5cf2bb4a04f43933f505a624fb7dc5f68b949f0a5c"
+            ],
+            "version": "==0.2.5"
+        },
         "fake-useragent": {
             "hashes": [
                 "sha256:c104998b750eb097eefc28ae28e92d66397598d2cf41a31aa45d5559ef1adf35"
             ],
             "version": "==0.1.11"
+        },
+        "future": {
+            "hashes": [
+                "sha256:67045236dcfd6816dc439556d009594abf643e5eb48992e36beac09c2ca659b8"
+            ],
+            "version": "==0.17.1"
         },
         "idna": {
             "hashes": [
@@ -110,6 +123,15 @@
                 "sha256:dbe44f61c40a995d2bdfd83d9fcb87ae025882d2c7f366513325e3daa09d7ede"
             ],
             "version": "==6.0.0"
+        },
+        "pyfunctional": {
+            "hashes": [
+                "sha256:65d5d201f19441b4d8824f714bcb52c592aa4203672051678c1466c74897dd40",
+                "sha256:670cf92d8df8b70febac13fa762c17e5e76dc75639e91990b98f06fd7157703f",
+                "sha256:f8a987c77b60a765a84aaa20df1c7a8c168bbef2cc3966911b8ad20bcdf3199a"
+            ],
+            "index": "pypi",
+            "version": "==1.2.0"
         },
         "pyppeteer": {
             "hashes": [
@@ -171,6 +193,12 @@
                 "sha256:a5a6166b4767725fd52ae55fee8c8b6137d9a51e9f1edea461a062a759160118"
             ],
             "version": "==1.9.3"
+        },
+        "tabulate": {
+            "hashes": [
+                "sha256:8af07a39377cee1103a5c8b3330a421c2d99b9141e9cc5ddd2e3263fea416943"
+            ],
+            "version": "==0.8.3"
         },
         "tqdm": {
             "hashes": [

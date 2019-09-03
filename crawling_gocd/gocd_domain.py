@@ -18,11 +18,10 @@ class Pipeline:
 
     def __str__(self):
         return "{ name: %s, calcConfig: %s }" % (self.name, str(self.calcConfig))
-
+    
     def setHistories(self, histories):
         self.histories = histories
-
-
+    
 class PipelineHistory:
     def __init__(self, label, scheduledTimestamp, stages):
         self.label = label
