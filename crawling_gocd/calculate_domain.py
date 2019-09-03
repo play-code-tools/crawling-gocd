@@ -6,4 +6,8 @@ class InputsCalcConfig:
         self.endTime = endTime
 
     def __str__(self):
-        return "{groupedStages: %s, startTime: %s, endTime: %s}" % (str(self.groupedStages), str(self.startTime), str(self.endTime))
+        return "{ groupedStages: %s, startTime: %s, endTime: %s }" % (str(self.groupedStages), str(self.startTime), str(self.endTime))
+
+class CalculateStrategyHandle:
+    def calculate(self, pipelines):
+        pass

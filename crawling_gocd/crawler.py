@@ -2,6 +2,7 @@ import time
 from operator import attrgetter
 from datetime import datetime
 from requests_html import HTMLSession
+from crawling_gocd.gocd_domain import PipelineHistory, StageHistory
 
 
 class Crawler:
@@ -31,15 +32,16 @@ class Crawler:
             print("get url {}".format(url))
             try:
                 ret = self.getResource(url)
-                pipelines = list(map(lambda x: x["history"], ret["groups"]))[0]
-                if len(pipelines) == 0:
+                pipelineHistories = list(
+                    map(lambda x: x["history"], ret["groups"]))[0]
+                if len(pipelineHistories) == 0:
                     break
 
                 data = data + \
                     self.filterPipelinesPerPage(
-                        pipelines, startTime, endTime)
+                        pipelineHistories, startTime, endTime)
 
-                if self.canStop(pipelines, startTime):
+                if self.canStop(pipelineHistories, startTime):
                     break
 
                 offset = ret["start"] + ret["perPage"]
@@ -52,7 +54,15 @@ class Crawler:
         return list(filter(lambda x: (time.mktime(startTime) <= int(x["scheduled_timestamp"]) <= time.mktime(endTime)), pipelines))
 
     def canStop(self, pipelines, startTime):
-        scheduledTimestatmps = list(map(lambda x: int(x["scheduled_timestamp"]), pipelines))
+        scheduledTimestatmps = list(
+            map(lambda x: int(x["scheduled_timestamp"]), pipelines))
         return min(scheduledTimestatmps) < time.mktime(startTime)
 
-    
+
+class CrawlingDataMapper:
+    def mapPipelineHistory(self, pipelineHistories):
+        return list(map(lambda history: PipelineHistory(
+            history["counterOrLabel"], history["scheduled_timestamp"], self.mapPipelineHistoryStage(history["stages"])), pipelineHistories))
+
+    def mapPipelineHistoryStage(self, stageArray):
+        return list(map(lambda stage: StageHistory(stage["stageId"], stage["stageName"], stage["stageStatus"]), stageArray))

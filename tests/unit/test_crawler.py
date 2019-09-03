@@ -14,12 +14,6 @@ class CrawlerTest(unittest.TestCase):
         self.filePage1 = "tests/unit/resources/pipeline_history_pg_1.json"
         self.filePage2 = "tests/unit/resources/pipeline_history_pg_2.json"
 
-        # self.crawler.getResource = MagicMock(return_value=3)
-
-    # def test_init(self):
-    #     orgnization = Organization(os.environ["GOCD_SITE"], os.environ["GOCD_USER"], os.environ["GOCD_PASSWORD"])
-    #     Crawler(orgnization)
-
     def test_generate_pipeline_history_url_correctly(self):
         url = self.crawler.generatePipelineHistoryUrl("go_service", 10)
         self.assertEqual("https://test.com/go/pipelineHistory.json?pipelineName=go_service&start=10", url)

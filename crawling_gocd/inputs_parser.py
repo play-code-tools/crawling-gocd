@@ -13,10 +13,10 @@ class InputsParser:
                 print("yaml file read failed, {}", exc)
 
     def parse(self):
-        globalStartTime = self.inputs.get(
-            "global.start_time", datetime.datetime(1970, 1, 1))
-        globalEndTime = self.inputs.get(
-            "global.end_time", datetime.datetime.now())
+        globalStartTime = self.inputs.get("global", {}).get(
+            "start_time", datetime.datetime(1970, 1, 1))
+        globalEndTime = self.inputs.get("global", {}).get(
+            "end_time", datetime.datetime.now())
 
         return list(map(lambda pipeline: self.mapSingle(
             pipeline, globalStartTime, globalEndTime), self.inputs["pipelines"]))
