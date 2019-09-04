@@ -25,6 +25,6 @@ GOCD_SITE="<your_gocd_site>" GOCD_USER="<your_username>" GOCD_PASSWORD="<your_pa
 ```
 
 ### Expansibility
-So far the crawling url is according to the goCD version 18.11.
-If need use to incompatible goCD version, just replace the file `Crawler.py`.
+So far the crawling url is according to the goCD version 18.11.  
+If need use to incompatible goCD version, just replace the file `Crawler.py`.  
 If need some new metrics handler, just write the implementation class under the superclass  `CalculateStrategyHandler`, and assemble into `Calculator` in the file `Portal`.
