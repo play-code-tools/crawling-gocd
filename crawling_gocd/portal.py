@@ -15,7 +15,9 @@ class Portal:
 
         calculator = self.assembleCalculator()
         results = calculator.work(pipelineWithFullData, [])
+        print("==============Results start===================")
         print("\n".join(str(x) for x in results))
+        print("==============Results end=====================")
 
     def crawlingSinglePipeline(self, pipeline, crawler):
         mapper = CrawlingDataMapper()
