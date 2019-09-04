@@ -1,4 +1,6 @@
 import time
+import sys
+import itertools
 from operator import attrgetter
 from datetime import datetime
 from requests_html import HTMLSession
@@ -32,13 +34,14 @@ class Crawler:
             print("get url {}".format(url))
             try:
                 ret = self.getResource(url)
-                pipelineHistories = list(
-                    map(lambda x: x["history"], ret["groups"]))[0]
+                pipelineHistoriesList = list(
+                    map(lambda x: x["history"], ret["groups"]))
+                pipelineHistories = list(itertools.chain(*pipelineHistoriesList))
+
                 if len(pipelineHistories) == 0:
                     break
 
-                data = data + \
-                    self.filterPipelinesPerPage(
+                data = data + self.filterPipelinesPerPage(
                         pipelineHistories, startTime, endTime)
 
                 if self.canStop(pipelineHistories, startTime):
@@ -46,18 +49,17 @@ class Crawler:
 
                 offset = ret["start"] + ret["perPage"]
             except:
-                print("failed {}".format(url))
+                print("failed {} \n".format(url), sys.exc_info())
                 break
         return data
 
     def filterPipelinesPerPage(self, pipelines, startTime, endTime):
-        return list(filter(lambda x: (time.mktime(startTime) <= int(x["scheduled_timestamp"]) <= time.mktime(endTime)), pipelines))
+        return list(filter(lambda x: datetime.timestamp(startTime) <= (int(x["scheduled_timestamp"]) / 1000) <= datetime.timestamp(endTime), pipelines))
 
     def canStop(self, pipelines, startTime):
         scheduledTimestatmps = list(
-            map(lambda x: int(x["scheduled_timestamp"]), pipelines))
-        return min(scheduledTimestatmps) < time.mktime(startTime)
-
+            map(lambda x: int(x["scheduled_timestamp"]) / 1000, pipelines))
+        return (min(scheduledTimestatmps)) < datetime.timestamp(startTime)
 
 class CrawlingDataMapper:
     def mapPipelineHistory(self, pipelineHistories):

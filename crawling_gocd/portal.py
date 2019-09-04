@@ -1,22 +1,28 @@
+import os
 from crawling_gocd.inputs_parser import InputsParser
 from crawling_gocd.gocd_domain import Organization 
 from crawling_gocd.crawler import Crawler, CrawlingDataMapper
 from crawling_gocd.calculator import Calculator
+from crawling_gocd.four_key_metrics import DeploymentFrequency
 
 
-class portal:
+class Portal:
     def work(self):
         inputPipelines = InputsParser("inputs.yaml").parse()
-        orgnization = Organization("test.com", "username", "password")
+        orgnization = Organization(os.environ["GOCD_SITE"], os.environ["GOCD_USER"], os.environ["GOCD_PASSWORD"])
         crawler = Crawler(orgnization)
         pipelineWithFullData = list(map(lambda pipeline: self.crawlingSinglePipeline(pipeline, crawler), inputPipelines))
-        
+
+        calculator = self.assembleCalculator()
+        results = calculator.work(pipelineWithFullData, [])
+        print("\n".join(str(x) for x in results))
 
     def crawlingSinglePipeline(self, pipeline, crawler):
         mapper = CrawlingDataMapper()
-        histories = crawler.getPipelineHistories(pipeline.pipelineName, pipeline.calcConfig.startTime, pipeline.calcConfig.endTime)
+        histories = crawler.getPipelineHistories(pipeline.name, pipeline.calcConfig.startTime, pipeline.calcConfig.endTime)
         pipeline.histories = mapper.mapPipelineHistory(histories)
         return pipeline
     
     def assembleCalculator(self):
-        Calculator()
+        deploymentFrequencyHandler = DeploymentFrequency()
+        return Calculator([deploymentFrequencyHandler])

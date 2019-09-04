@@ -3,8 +3,9 @@ class Calculator:
     def __init__(self, strategyHandlers):
         self.strategyHandlers = strategyHandlers
 
-    def work(self, pipelines):
+    def work(self, pipelines, results = []):
         for handler in self.strategyHandlers:
-            handler.work(pipelines)
+            handler.calculate(pipelines, results)
+        return results
 
 

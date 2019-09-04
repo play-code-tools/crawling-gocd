@@ -1149,6 +1149,33 @@
                     "comment": null
                 }
             ]
+        },
+        {
+            "config": {
+                "stages": [
+                    {
+                        "name": "code-scan",
+                        "isAutoApproved": "true"
+                    },
+                    {
+                        "name": "test-integration",
+                        "isAutoApproved": "true"
+                    },
+                    {
+                        "name": "build",
+                        "isAutoApproved": "true"
+                    },
+                    {
+                        "name": "flyway-qa",
+                        "isAutoApproved": "false"
+                    },
+                    {
+                        "name": "deploy-qa",
+                        "isAutoApproved": "true"
+                    }
+                ]
+            },
+            "history": []
         }
     ],
     "forcedBuild": "false",

@@ -1,5 +1,6 @@
-
+import os
+from crawling_gocd.portal import Portal
 
 
 if __name__ == "__main__":
-    print("hello")
+    Portal().work()

@@ -1,4 +1,5 @@
 import base64
+from crawling_gocd.calculate_domain import InputsCalcConfig
 
 
 class Organization:
@@ -12,7 +13,7 @@ class Organization:
 
 
 class Pipeline:
-    def __init__(self, name, calcConfig):
+    def __init__(self, name, calcConfig: InputsCalcConfig):
         self.name = name
         self.calcConfig = calcConfig
 
@@ -31,6 +32,8 @@ class PipelineHistory:
     def __str__(self):
         return "{ label: %s, scheduledTimestamp: %s, stages: %s }" % (self.label, str(self.scheduledTimestamp), str(", ".join(str(stage) for stage in self.stages)))
 
+    def hasStatusInStages(self, stageNames):
+        return len(list(filter(lambda stage: stage.name in stageNames and stage.status != "Unknown", self.stages))) > 0
 
 class StageHistory:
     def __init__(self, oid, name, status):

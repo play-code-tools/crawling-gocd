@@ -9,4 +9,4 @@ class InputsParserTest(unittest.TestCase):
     def test_should_generate_inputs_object_correctly(self):
         result = self.parser.parse()
         self.assertEqual("".join(str(x) for x in result),
-                         "{ name: accounting-plus-master, calc_config: { groupedStages: {'ci': ['code-scan', 'test-integration', 'build'], 'qa': ['flyway-qa', 'deploy-qa']}, startTime: 2019-07-01 00:00:00, endTime: 2019-08-12 23:59:59 } }")
+                         "{ name: accounting-plus-master, calcConfig: { groupedStages: {'ci': ['code-scan', 'test-integration', 'build'], 'qa': ['flyway-qa', 'deploy-qa']}, startTime: 2019-07-01 00:00:00, endTime: 2019-08-12 23:59:59 } }")
