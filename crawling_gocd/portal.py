@@ -3,7 +3,7 @@ from crawling_gocd.inputs_parser import InputsParser
 from crawling_gocd.gocd_domain import Organization 
 from crawling_gocd.crawler import Crawler, CrawlingDataMapper
 from crawling_gocd.calculator import Calculator
-from crawling_gocd.four_key_metrics import DeploymentFrequency
+from crawling_gocd.four_key_metrics import DeploymentFrequency, ChangeFailPercentage, MeanTimeToRestore
 
 
 class Portal:
@@ -25,4 +25,6 @@ class Portal:
     
     def assembleCalculator(self):
         deploymentFrequencyHandler = DeploymentFrequency()
-        return Calculator([deploymentFrequencyHandler])
+        changeFailPercentage = ChangeFailPercentage()
+        meanTimeToRestore = MeanTimeToRestore()
+        return Calculator([deploymentFrequencyHandler, changeFailPercentage, meanTimeToRestore])

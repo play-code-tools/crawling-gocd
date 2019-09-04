@@ -1,14 +1,13 @@
 import unittest
 import json
+import tests.unit.test_fixture as fixture
 from crawling_gocd.crawler import CrawlingDataMapper
 from crawling_gocd.gocd_domain import PipelineHistory, StageHistory
 
 class CrawlingDataMapperTest(unittest.TestCase):
     def setUp(self):
-        self.filePage1 = "tests/unit/resources/pipeline_history_pg_1.json"
-        with open(self.filePage1, 'r') as f:
-            page1 = json.load(f)
-        self.pipelineHistories = list(map(lambda x: x["history"], page1["groups"]))[0]
+        filePage1 = "tests/unit/resources/pipeline_history_pg_1.json"
+        self.pipelineHistories = fixture.getPipelineHistories(filePage1)
         self.mapper = CrawlingDataMapper()
 
     def test_should_map_domain_object_correctly(self):

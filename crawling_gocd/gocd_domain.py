@@ -34,6 +34,13 @@ class PipelineHistory:
 
     def hasStatusInStages(self, stageNames):
         return len(list(filter(lambda stage: stage.name in stageNames and stage.status != "Unknown", self.stages))) > 0
+    
+    def hasFailedInStages(self, stageNames):
+        return len(list(filter(lambda stage: stage.name in stageNames and stage.status == "Failed", self.stages))) > 0
+
+    def allPassedInStages(self, stageNames):
+        return len(list(filter(lambda stage: stage.name in stageNames and stage.status == "Passed", self.stages))) == len(stageNames)
+
 
 class StageHistory:
     def __init__(self, oid, name, status):

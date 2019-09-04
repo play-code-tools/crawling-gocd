@@ -1,6 +1,6 @@
 pipelines:
   - 
-    name: accounting-plus-master
+    name: account-management-normal-master
     calc_grouped_stages: 
       ci:
         - code-scan
@@ -9,6 +9,45 @@ pipelines:
       qa:
         - flyway-qa
         - deploy-qa
+  - 
+    name: account-management-normal-release
+    calc_grouped_stages: 
+      uat:
+        - flyway-uat
+        - deploy-uat
+  - 
+    name: lead-management-normal-master
+    calc_grouped_stages: 
+      ci:
+        - code-scan
+        - test-integration
+        - build
+      qa:
+        - flyway-qa
+        - deploy-qa
+  - 
+    name: lead-management-normal-release
+    calc_grouped_stages: 
+      uat:
+        - flyway-uat
+        - deploy-uat
+  - 
+    name: vehicle-management-normal-master
+    calc_grouped_stages: 
+      ci:
+        - code-scan
+        - test-integration
+        - build
+      qa:
+        - flyway-qa
+        - deploy-qa
+  - 
+    name: vehicle-management-normal-release
+    calc_grouped_stages: 
+      uat:
+        - flyway-uat
+        - deploy-uat
+
 
 global:
   start_time: 2019-07-01 00:00:00

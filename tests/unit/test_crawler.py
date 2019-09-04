@@ -1,6 +1,7 @@
 import os
 import unittest
 import json
+import tests.unit.test_fixture as fixture
 from datetime import datetime
 from crawling_gocd.gocd_domain import Organization
 from crawling_gocd.crawler import Crawler
@@ -29,23 +30,16 @@ class CrawlerTest(unittest.TestCase):
             "https://test.com/go/pipelineHistory.json?pipelineName=go_service", url)
 
     def test_should_return_true_when_data_is_over_time(self):
-        with open(self.filePage1, 'r') as f:
-            page1 = json.load(f)
-        pipelines = list(map(lambda x: x["history"], page1["groups"]))
-        self.assertTrue(self.crawler.canStop(pipelines[0], datetime.fromtimestamp(1567075172220/1000)))
+        pipelineHistories = fixture.getPipelineHistories(self.filePage1)
+        self.assertTrue(self.crawler.canStop(pipelineHistories, datetime.fromtimestamp(1567075172220/1000)))
 
     def test_should_return_false_when_data_is_not_over_time(self):
-        with open(self.filePage1, 'r') as f:
-            page1=json.load(f)
-        pipelines=list(map(lambda x: x["history"], page1["groups"]))
-        self.assertFalse(self.crawler.canStop(
-            pipelines[0], datetime.fromtimestamp(1567075172200/1000)))
+        pipelineHistories = fixture.getPipelineHistories(self.filePage1)
+        self.assertFalse(self.crawler.canStop(pipelineHistories, datetime.fromtimestamp(1567075172200/1000)))
 
     def test_should_filter_data_when_data_is_over_time(self):
-        with open(self.filePage1, 'r') as f:
-            page1=json.load(f)
-        pipelines=list(map(lambda x: x["history"], page1["groups"]))
-        result=self.crawler.filterPipelinesPerPage(pipelines[0], datetime.fromtimestamp(1567075172220 / 1000), datetime.fromtimestamp(1567335377730/1000))
+        pipelineHistories = fixture.getPipelineHistories(self.filePage1)
+        result=self.crawler.filterPipelinesPerPage(pipelineHistories, datetime.fromtimestamp(1567075172220 / 1000), datetime.fromtimestamp(1567335377730/1000))
         self.assertEqual(len(result), 8)
 
     def test_should_get_pipeline_history_correctly(self):
@@ -58,8 +52,8 @@ class CrawlerTest(unittest.TestCase):
                 return json.load(f)
 
         self.crawler.getResource=MagicMock(side_effect=side_effect)
-        pipelines=self.crawler.getPipelineHistories("go_service", datetime.fromtimestamp(1567052779277/1000), datetime.fromtimestamp(1567335377730/1000))
-        self.assertEqual(len(pipelines), 16)
+        pipelineHistories=self.crawler.getPipelineHistories("go_service", datetime.fromtimestamp(1567052779277/1000), datetime.fromtimestamp(1567335377730/1000))
+        self.assertEqual(len(pipelineHistories), 16)
 
 if __name__ == '__main__':
     unittest.main()

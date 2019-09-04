@@ -10,7 +10,7 @@ class InputsCalcConfig:
         return "{ groupedStages: %s, startTime: %s, endTime: %s }" % (str(self.groupedStages), str(self.startTime), str(self.endTime))
 
 class CalculateStrategyHandler:
-    def calculate(self, pipelines):
+    def calculate(self, pipelines, results):
         return []
 
 class Result:
