@@ -46,12 +46,12 @@ global:
 
 
 `pipeline calc_grouped_stages` includes each phase needed to calculate metrics.  
-Such as, if we want to calculate the deployment frequency for QA environment, and the QA deployment has two stages。
+Such as, if we want to calculate the deployment frequency for QA environment, and the QA deployment has two stages.  
 If one of the two stages fails, determines QA deployment failed, so we configure the qa phase has `flyway-qa`、`deploy-qa`.
 
 
-`global start_time` and `global end_time`, determines the time slot for crawling pipeline histories.
-Also, there are `pipeline start_time` and `pipeline end_time`, they have a high priority to `global start_time` and `global end_time`.
+`global start_time` and `global end_time`, determines the time slot for crawling pipeline histories.  
+Also, there are `pipeline start_time` and `pipeline end_time`, they have a high priority to `global start_time` and `global end_time`.  
 
 2. Run command
 ```
