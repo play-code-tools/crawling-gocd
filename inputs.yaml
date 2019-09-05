@@ -47,8 +47,109 @@ pipelines:
       uat:
         - flyway-uat
         - deploy-uat
+  - 
+    name: report-management-normal-master
+    calc_grouped_stages: 
+      ci:
+        - code-scan
+        - test-integration
+        - build
+      qa:
+        - flyway-qa
+        - deploy-qa
+  - 
+    name: report-management-normal-release
+    calc_grouped_stages: 
+      uat:
+        - flyway-uat
+        - deploy-uat
+  - 
+    name: archive-management-normal-master
+    calc_grouped_stages: 
+      ci:
+        - code-scan
+        - test-integration
+        - build
+      qa:
+        - deploy-qa
+  - 
+    name: archive-management-normal-release
+    calc_grouped_stages: 
+      uat:
+        - deploy-uat
+  - 
+    name: used-car-management-normal-master
+    calc_grouped_stages: 
+      ci:
+        - code-scan
+        - test-integration
+        - build
+      qa:
+        - deploy-qa
+  - 
+    name: used-car-management-normal-release
+    calc_grouped_stages: 
+      uat:
+        - deploy-uat
+  - 
+    name: case-management-normal-master
+    calc_grouped_stages: 
+      ci:
+        - code-scan
+        - test-integration
+        - build
+      qa:
+        - deploy-qa
+  - 
+    name: case-management-normal-release
+    calc_grouped_stages: 
+      uat:
+        - deploy-uat
+  - 
+    name: mobile-bff-normal-master
+    calc_grouped_stages: 
+      ci:
+        - code-scan
+        - test-integration
+        - build
+      qa:
+        - deploy-qa
+  - 
+    name: mobile-bff-normal-release
+    calc_grouped_stages: 
+      uat:
+        - deploy-uat
+  - 
+    name: website-bff-normal-master
+    calc_grouped_stages: 
+      ci:
+        - code-scan
+        - test-integration
+        - build
+      qa:
+        - deploy-qa
+  - 
+    name: website-bff-normal-release
+    calc_grouped_stages: 
+      uat:
+        - deploy-uat
+  - 
+    name: website-normal-master
+    calc_grouped_stages: 
+      ci:
+        - test
+      qa:
+        - build-qa
+        - deploy-qa
+  - 
+    name: website-normal-release
+    calc_grouped_stages: 
+      uat:
+        - build-uat
+        - deploy-uat
 
 
+        
 global:
   start_time: 2019-07-01 00:00:00
   end_time: 2019-08-12 23:59:59
