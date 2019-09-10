@@ -37,4 +37,4 @@ class MeanTimeToRestoreTest(unittest.TestCase):
         handler = MeanTimeToRestore()
         results = handler.calculate([self.pipeline], [])
         self.assertEqual("".join(str(x) for x in results),
-                         "{ pipelineName: go_service, metricsName: Mean Time To Restore, groupName: qa, value: 4141 }")
+                         "{ pipelineName: go_service, metricsName: Mean Time To Restore, groupName: qa, value: 69(mins) }")
