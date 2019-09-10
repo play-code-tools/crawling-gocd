@@ -32,6 +32,10 @@ class ChangeFailPercentage(CalculateStrategyHandlerBase):
     def valueOfSingleGroupedStage(self, pipelineHistories, stageNames):
         runCount = len(list(filter(lambda history: history.hasStatusInStages(stageNames), pipelineHistories)))
         failedCount = len(list(filter(lambda history: history.hasFailedInStages(stageNames), pipelineHistories)))
+
+        if runCount == 0 and failedCount == 0:
+            return "0"
+
         return "{:.1%}".format(failedCount / runCount)
 
 class MeanTimeToRestore(CalculateStrategyHandlerBase):
@@ -39,25 +43,25 @@ class MeanTimeToRestore(CalculateStrategyHandlerBase):
         return "Mean Time To Restore"
 
     def valueOfSingleGroupedStage(self, pipelineHistories, stageNames):
-        totalTime, count, latestFailedScheduled = 0, 0, 0
+        restoreTotalTime, failedCount, latestFailedScheduled = 0, 0, 0
 
         pipelineHistories.sort(key=lambda history: history.scheduledTimestamp)
         for history in pipelineHistories:
             if history.hasFailedInStages(stageNames) and latestFailedScheduled == 0:
-                count += 1
+                failedCount += 1
                 latestFailedScheduled = history.scheduledTimestamp
 
             if history.allPassedInStages(stageNames) and latestFailedScheduled != 0:
-                totalTime += history.scheduledTimestamp - latestFailedScheduled
+                restoreTotalTime += history.scheduledTimestamp - latestFailedScheduled
                 latestFailedScheduled = 0
         
-        if latestFailedScheduled != 0 and count > 0:
-            count -= 1
+        if latestFailedScheduled != 0 and failedCount > 0:
+            failedCount -= 1
 
-        if count == 0:
+        if failedCount == 0:
             return 0
 
-        return "%s(mins)" % round(totalTime / count / 1000 / 60)
+        return "%s(mins)" % round(restoreTotalTime / failedCount / 1000 / 60)
 
 
     
