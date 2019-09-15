@@ -2,3 +2,4 @@
 .vscode/
 **/__pycache__/
 *.pyc
+crawling_output.csv

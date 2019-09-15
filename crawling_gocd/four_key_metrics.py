@@ -20,14 +20,14 @@ class CalculateStrategyHandlerBase(CalculateStrategyHandler):
 
 class DeploymentFrequency(CalculateStrategyHandlerBase):
     def getMetricName(self):
-        return "Deployment Frequency"
+        return "DeploymentFrequency"
 
     def valueOfSingleGroupedStage(self, pipelineHistories, stageNames):
         return len(list(filter(lambda history: history.hasStatusInStages(stageNames), pipelineHistories)))
 
 class ChangeFailPercentage(CalculateStrategyHandlerBase):
     def getMetricName(self):
-        return "Change Fail Percentage"
+        return "ChangeFailPercentage"
 
     def valueOfSingleGroupedStage(self, pipelineHistories, stageNames):
         runCount = len(list(filter(lambda history: history.hasStatusInStages(stageNames), pipelineHistories)))
@@ -40,7 +40,7 @@ class ChangeFailPercentage(CalculateStrategyHandlerBase):
 
 class MeanTimeToRestore(CalculateStrategyHandlerBase):
     def getMetricName(self):
-        return "Mean Time To Restore"
+        return "MeanTimeToRestore"
 
     def valueOfSingleGroupedStage(self, pipelineHistories, stageNames):
         restoreTotalTime, failedCount, latestFailedScheduled = 0, 0, 0
