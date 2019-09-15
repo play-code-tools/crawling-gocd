@@ -1,3 +1,0 @@
-pipelineName,groupName,ChangeFailPercentage,DeploymentFrequency,MeanTimeToRestore
-account-management-normal-master,ci,5.5%,145,56(mins)
-account-management-normal-master,qa,4.9%,61,53(mins)

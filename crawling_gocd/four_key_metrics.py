@@ -38,6 +38,28 @@ class ChangeFailPercentage(CalculateStrategyHandlerBase):
 
         return "{:.1%}".format(failedCount / runCount)
 
+class ChangeFailPercentage_ignoredContinuousFailed(CalculateStrategyHandlerBase):
+    def getMetricName(self):
+        return "ChangeFailPercentage_2"
+
+    def valueOfSingleGroupedStage(self, pipelineHistories, stageNames):
+        runCount = len(list(filter(lambda history: history.hasStatusInStages(stageNames), pipelineHistories)))
+        
+        pipelineHistories.sort(key=lambda history: history.label)
+        failedCount, lastIsFailed = 0, False
+        for history in pipelineHistories:
+            if history.hasFailedInStages(stageNames) and lastIsFailed == False:
+                failedCount += 1
+                lastIsFailed = True
+            
+            if history.allPassedInStages(stageNames) and lastIsFailed == True:
+                lastIsFailed = False
+
+        if runCount == 0 and failedCount == 0:
+            return "0"
+
+        return "{:.1%}".format(failedCount / runCount)
+
 class MeanTimeToRestore(CalculateStrategyHandlerBase):
     def getMetricName(self):
         return "MeanTimeToRestore"
