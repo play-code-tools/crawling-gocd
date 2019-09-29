@@ -60,7 +60,7 @@ pipenv run python main.py
 __Attention__: Need set the environment variables `GOCD_SITE`、`GOCD_USER`、`GOCD_PASSWORD` before running the command.
 Alternatively, use the following command:
 ```
-GOCD_SITE="<your_gocd_site>" GOCD_USER="<your_username>" GOCD_PASSWORD="<your_password>" pipenv run python main.py
+GOCD_SITE="<your_gocd_site>" GOCD_USER="<your_username>" GOCD_PASSWORD="<your_password>" pipenv run python -m crawling_gocd
 ```
 
 ### Expansibility

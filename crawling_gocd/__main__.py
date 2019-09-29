@@ -1,4 +1,3 @@
-import os
 from crawling_gocd.portal import Portal
 
 
