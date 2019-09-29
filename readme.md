@@ -1,5 +1,5 @@
 ## Crawling-GoCD
-This project works for crawling the pipeline to build histories and calculate the metrics.
+This project works for crawling the build histories of pipelines and calculate the metrics.
 
 ### Installation
 1. python 3
