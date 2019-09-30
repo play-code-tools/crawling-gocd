@@ -4,12 +4,11 @@ from crawling_gocd.gocd_domain import Organization
 from crawling_gocd.crawler import Crawler, CrawlingDataMapper
 from crawling_gocd.calculator import Calculator
 from crawling_gocd.four_key_metrics import DeploymentFrequency, ChangeFailPercentage, ChangeFailPercentage_ignoredContinuousFailed, MeanTimeToRestore
-from crawling_gocd.output_csv import OutputCsv
-
 
 class Portal:
     def work(self):
-        inputPipelines = InputsParser("inputs.yaml").parse()
+        inputsParser = InputsParser("inputs.yaml")
+        inputPipelines = inputsParser.parse()
         orgnization = Organization(
             os.environ["GOCD_SITE"], os.environ["GOCD_USER"], os.environ["GOCD_PASSWORD"])
         crawler = Crawler(orgnization)
@@ -18,7 +17,7 @@ class Portal:
 
         calculator = self.assembleCalculator()
         results = calculator.work(pipelineWithFullData, [])
-        OutputCsv().output(results)
+        inputsParser.outputCustomizeClazz()().output(results)
         print("The metrics results see the crawling_output.csv file")
 
     def crawlingSinglePipeline(self, pipeline, crawler):
@@ -29,6 +28,7 @@ class Portal:
         return pipeline
 
     def assembleCalculator(self):
+        
         deploymentFrequencyHandler = DeploymentFrequency()
         changeFailPercentage = ChangeFailPercentage()
         changeFailPercentage2 = ChangeFailPercentage_ignoredContinuousFailed()

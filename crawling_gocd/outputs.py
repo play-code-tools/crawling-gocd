@@ -2,7 +2,12 @@ import csv
 import itertools
 from crawling_gocd.calculate_domain import Result
 
-class OutputCsv:
+
+class Output:
+    def output(self, results: Result):
+        pass
+
+class OutputCsv(Output):
     def __init__(self):
         self.fieldNames = ["pipelineName", "groupName"]
         self.fileName = "crawling_output.csv"

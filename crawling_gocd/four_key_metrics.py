@@ -34,7 +34,7 @@ class ChangeFailPercentage(CalculateStrategyHandlerBase):
         failedCount = len(list(filter(lambda history: history.hasFailedInStages(stageNames), pipelineHistories)))
 
         if runCount == 0 and failedCount == 0:
-            return "0"
+            return None
 
         return "{:.1%}".format(failedCount / runCount)
 
@@ -56,7 +56,7 @@ class ChangeFailPercentage_ignoredContinuousFailed(CalculateStrategyHandlerBase)
                 lastIsFailed = False
 
         if runCount == 0 and failedCount == 0:
-            return "0"
+            return None
 
         return "{:.1%}".format(failedCount / runCount)
 
@@ -81,7 +81,7 @@ class MeanTimeToRestore(CalculateStrategyHandlerBase):
             failedCount -= 1
 
         if failedCount == 0:
-            return 0
+            return None
 
         return "%s(mins)" % round(restoreTotalTime / failedCount / 1000 / 60)
 
