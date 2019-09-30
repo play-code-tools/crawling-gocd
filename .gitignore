@@ -3,3 +3,7 @@
 **/__pycache__/
 *.pyc
 crawling_output.csv
+
+dist/
+build/
+crawling_gocd.egg-info/

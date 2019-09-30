@@ -8,11 +8,15 @@ pylint = "*"
 autopep8 = "*"
 rope = "*"
 bumpversion = "*"
+setuptools = "*"
+wheel = "*"
+twine = "*"
 
 [packages]
 requests-html = "*"
 pyyaml = "*"
 pyfunctional = "*"
+
 
 [requires]
 python_version = "3.7"

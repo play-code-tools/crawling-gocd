@@ -6,14 +6,14 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="crawling-gocd",
-    version="1.0.0",
+    version="0.0.1",
     description="crawling the build histories of pipelines and calculate the metrics",
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/play-code-tools/crawling-gocd",
     author="play-code-tools",
     author_email="ellendan000@gmail.com",
-    license="GPL-3.0",
+    license="MIT",
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
