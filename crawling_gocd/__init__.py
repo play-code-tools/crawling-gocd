@@ -1,2 +1,8 @@
+import crawling_gocd.four_key_metrics
+import crawling_gocd.outputs
+import logging
+
 name = "crawling_gocd"
 version = "0.1.0"
+
+logging.basicConfig(level=logging.DEBUG)

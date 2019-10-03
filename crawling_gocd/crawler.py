@@ -1,6 +1,7 @@
 import time
 import sys
 import itertools
+import logging
 from operator import attrgetter
 from datetime import datetime
 from requests_html import HTMLSession
@@ -31,7 +32,7 @@ class Crawler:
         offset, data = 0, []
         while True:
             url = self.generatePipelineHistoryUrl(pipelineName, offset)
-            print("get url {}".format(url))
+            logging.debug("get url {}".format(url))
             try:
                 ret = self.getResource(url)
                 pipelineHistoriesList = list(
@@ -49,7 +50,7 @@ class Crawler:
 
                 offset = ret["start"] + ret["perPage"]
             except:
-                print("failed {} \n".format(url), sys.exc_info())
+                logging.error("failed {} \n".format(url), sys.exc_info())
                 break
         return data
 

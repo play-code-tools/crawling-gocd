@@ -1,5 +1,6 @@
 import csv
 import itertools
+import logging
 from crawling_gocd.calculate_domain import Result
 
 
@@ -22,6 +23,7 @@ class OutputCsv(Output):
                                     quotechar='"', quoting=csv.QUOTE_MINIMAL)
             writer.writeheader()
             writer.writerows(formatOutputs)
+        logging.info("The metrics results see the crawling_output.csv file")
 
     def convertToFormatOutputs(self, results):
         keyFunction = lambda r: (r.pipelineName, r.groupName)

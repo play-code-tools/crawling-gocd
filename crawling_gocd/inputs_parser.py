@@ -13,7 +13,7 @@ class InputsParser:
             except yaml.YAMLError as exc:
                 print("yaml file read failed, {}", exc)
 
-    def parse(self):
+    def parsePipelineConfig(self):
         globalStartTime = self.inputs.get("global", {}).get(
             "start_time", datetime.datetime(1970, 1, 1))
         globalEndTime = self.inputs.get("global", {}).get(
