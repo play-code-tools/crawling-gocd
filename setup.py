@@ -6,7 +6,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name="crawling-gocd",
-    version="0.1.0",
+    version="0.1.1",
     description="crawling the build histories of pipelines and calculate the metrics",
     long_description=README,
     long_description_content_type="text/markdown",
