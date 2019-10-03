@@ -5,7 +5,7 @@ from crawling_gocd.calculate_domain import Result
 
 
 class Output:
-    def output(self, results: Result):
+    def output(self, results):
         pass
 
 class OutputCsv(Output):
