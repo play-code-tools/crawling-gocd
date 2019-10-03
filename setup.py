@@ -23,7 +23,7 @@ setup(
     install_requires=["requests-html", "pyyaml", "pyfunctional"],
     entry_points={
         "console_scripts": [
-            "realpython=crwaling_gocd.__main__:main",
+            "realpython=crawling_gocd.__main__:main",
         ]
     },
 )
