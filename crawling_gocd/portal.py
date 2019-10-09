@@ -6,21 +6,19 @@ from crawling_gocd.calculator import Calculator
 from crawling_gocd.four_key_metrics import DeploymentFrequency, ChangeFailPercentage, ChangeFailPercentage_ignoredContinuousFailed, MeanTimeToRestore
 
 class Portal:
+    def __init__(self):
+        self.inputsParser = InputsParser("inputs.yaml")
+        self.calculator = self.assembleCalculator()
+        self.output = self.newOutputInstance()
+        self.crawler = self.newCrawler()
+
     def work(self):
-        inputsParser = InputsParser("inputs.yaml")
-        inputPipelines = inputsParser.parsePipelineConfig()
-        inputMetricClazzList = inputsParser.getMetrics()
-        inputCustomizeOutputClazz = inputsParser.outputCustomizeClazz()
-
-        orgnization = Organization(
-            os.environ["GOCD_SITE"], os.environ["GOCD_USER"], os.environ["GOCD_PASSWORD"])
-        crawler = Crawler(orgnization)
+        inputPipelines = self.inputsParser.parsePipelineConfig()
         pipelineWithFullData = list(map(lambda pipeline: self.crawlingSinglePipeline(
-            pipeline, crawler), inputPipelines))
+            pipeline, self.crawler), inputPipelines))
 
-        calculator = self.assembleCalculator(inputMetricClazzList)
-        results = calculator.work(pipelineWithFullData, [])
-        inputCustomizeOutputClazz().output(results)
+        results = self.calculator.work(pipelineWithFullData, [])
+        self.output.output(results)
 
     def crawlingSinglePipeline(self, pipeline, crawler):
         mapper = CrawlingDataMapper()
@@ -29,6 +27,16 @@ class Portal:
         pipeline.histories = mapper.mapPipelineHistory(histories)
         return pipeline
 
-    def assembleCalculator(self, metrics):
-        handlers = list(map(lambda clazz: clazz(), metrics))
+    def newCrawler(self):
+        orgnization = Organization(
+            os.environ["GOCD_SITE"], os.environ["GOCD_USER"], os.environ["GOCD_PASSWORD"])
+        return Crawler(orgnization)
+
+    def assembleCalculator(self):
+        inputMetricClasses = self.inputsParser.getMetrics()
+        handlers = list(map(lambda clazz: clazz(), inputMetricClasses))
         return Calculator(handlers)
+
+    def newOutputInstance(self):
+        inputOutputClass = self.inputsParser.outputCustomizeClazz()
+        return inputOutputClass()

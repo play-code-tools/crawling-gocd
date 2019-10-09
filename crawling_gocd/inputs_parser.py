@@ -19,10 +19,10 @@ class InputsParser:
         globalEndTime = self.inputs.get("global", {}).get(
             "end_time", datetime.datetime.now())
 
-        return list(map(lambda pipeline: self.mapSingle(
+        return list(map(lambda pipeline: self.mapSinglePipeline(
             pipeline, globalStartTime, globalEndTime), self.inputs["pipelines"]))
 
-    def mapSingle(self, pipelineConfig, globalStartTime, globalEndTime):
+    def mapSinglePipeline(self, pipelineConfig, globalStartTime, globalEndTime):
         inputCalcConfig = InputsCalcConfig(pipelineConfig["calc_grouped_stages"], pipelineConfig.get(
             "startTime", globalStartTime), pipelineConfig.get("endTime", globalEndTime))
         return Pipeline(pipelineConfig["name"], inputCalcConfig)
