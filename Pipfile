@@ -11,12 +11,13 @@ bumpversion = "*"
 setuptools = "*"
 wheel = "*"
 twine = "*"
+freezegun = "*"
+parameterized = "*"
 
 [packages]
 requests-html = "*"
 pyyaml = "*"
 pyfunctional = "*"
-
 
 [requires]
 python_version = "3.7"
