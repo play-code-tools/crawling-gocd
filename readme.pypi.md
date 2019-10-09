@@ -1,21 +1,11 @@
-## Crawling-GoCD
-This project works for crawling the build histories of pipelines and calculate the metrics.
+Crawling-GoCD is a library that works for crawling the goCD build histories of pipelines and calculate the metrics.
 
 ### Installation
-1. python 3
-2. pipenv
+```
+$ pip3 install crawling-gocd
+```
 
-### Development
-1. Install the packages
-  ```
-  pipenv install
-  ```
-2. Run test
-  ```
-  pipenv run python -m unittest discover
-  ```
-
-### Run
+### Usage
 1. Input configration in the file `inputs.yaml`
   ```
 pipelines:
@@ -42,6 +32,7 @@ global:
   start_time: 2019-07-01 00:00:00
   end_time: 2019-08-12 23:59:59
 ```
+
   `pipeline name` is the string in the history API URL.  
 
 
@@ -53,17 +44,16 @@ global:
   `global start_time` and `global end_time`, determines the time slot for crawling pipeline histories.  
   Also, there are `pipeline start_time` and `pipeline end_time`, they have a high priority to `global start_time` and `global end_time`.  
 
-2. Run command
+2. Code invoking
   ```
-  pipenv run python -m crawling_gocd
-  ``` 
-  __Attention__: Need set the environment variables `GOCD_SITE`、`GOCD_USER`、`GOCD_PASSWORD` before running the command.
-  Alternatively, use the following command:
+    from crawling_gocd.portal import Portal
+    
+    Portal().serve()
   ```
-  GOCD_SITE="<your_gocd_site>" GOCD_USER="<your_username>" GOCD_PASSWORD="<your_password>" pipenv run python -m crawling_gocd
-  ```
+3. Set environment variables 
+  Need set the environment variables `GOCD_SITE`、`GOCD_USER`、`GOCD_PASSWORD` before running the application.
+
 
 ### Expansibility
 So far the crawling URL is according to the goCD version 18.11.  
-If need use to incompatible goCD version, just replace the file `Crawler.py`.  
-If need some new metrics handler, just write the implementation class under the superclass  `CalculateStrategyHandler`, and assemble into `Calculator` in the file `Portal`.
+

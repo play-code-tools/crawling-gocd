@@ -7,12 +7,12 @@ from crawling_gocd.four_key_metrics import DeploymentFrequency, ChangeFailPercen
 
 class Portal:
     def __init__(self):
-        self.inputsParser = InputsParser("inputs.yaml")
+        self.inputsParser = InputsParser("crawling-gocd.yaml")
         self.calculator = self.assembleCalculator()
         self.output = self.newOutputInstance()
         self.crawler = self.newCrawler()
 
-    def work(self):
+    def serve(self):
         inputPipelines = self.inputsParser.parsePipelineConfig()
         pipelineWithFullData = list(map(lambda pipeline: self.crawlingSinglePipeline(
             pipeline, self.crawler), inputPipelines))

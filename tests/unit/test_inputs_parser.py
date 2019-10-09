@@ -8,7 +8,7 @@ from crawling_gocd.outputs import Output, OutputCsv
 
 class InputsParserTest(unittest.TestCase):
     def setUp(self):
-        self.parser = InputsParser("tests/unit/resources/inputs.yaml")
+        self.parser = InputsParser("tests/unit/resources/crawling-gocd.yaml")
 
     def test_should_generate_inputs_object_correctly_by_fix_time_range(self):
         result = self.parser.parsePipelineConfig()

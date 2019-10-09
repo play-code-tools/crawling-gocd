@@ -2,12 +2,12 @@ import pathlib
 from setuptools import setup, find_packages
 
 HERE = pathlib.Path(__file__).parent
-README = (HERE / "README.md").read_text()
+README = (HERE / "README.pypi.md").read_text()
 
 setup(
     name="crawling-gocd",
     version="0.1.1",
-    description="crawling the build histories of pipelines and calculate the metrics",
+    description="crawling the gocd build histories of pipelines and calculate the metrics",
     long_description=README,
     long_description_content_type="text/markdown",
     url="https://github.com/play-code-tools/crawling-gocd",
