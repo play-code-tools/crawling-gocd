@@ -6,7 +6,7 @@ $ pip3 install crawling-gocd
 ```
 
 ### Usage
-1. Input configration in the file `inputs.yaml`
+1. Input configration in the file `crawling-gocd.yaml`
 ```
 pipelines:
   - 

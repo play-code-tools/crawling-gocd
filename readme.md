@@ -16,7 +16,7 @@ This project works for crawling the build histories of pipelines and calculate t
   ```
 
 ### Run
-1. Input configration in the file `inputs.yaml`
+1. Input configration in the file `crawling-gocd.yaml`
   ```
 pipelines:
   - 
