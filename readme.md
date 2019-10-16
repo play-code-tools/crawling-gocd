@@ -1,4 +1,9 @@
-## Crawling-GoCD
+Crawling-GoCD
+====================================================
+
+.. image:: https://img.shields.io/pypi/v/crawling-gocd.svg
+   :target: https://pypi.org/project/crawling-gocd/
+
 This project works for crawling the build histories of pipelines and calculate the metrics.
 
 ### Installation
