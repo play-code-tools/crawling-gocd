@@ -58,6 +58,6 @@ class InputTimeParser:
         weekNum = globalDict.get("cycle_weeks")
         now = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
 
-        endTime = now + timedelta(days = 7 - now.weekday())
+        endTime = now - timedelta(days = now.weekday())
         startTime = endTime - timedelta(days = 7 * weekNum)
         return (startTime, endTime - timedelta(seconds = 1))
