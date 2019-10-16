@@ -1,6 +1,7 @@
 Crawling-GoCD
 ====================================================
-[![build](https://img.shields.io/pypi/v/crawling-gocd.svg)](https://pypi.org/project/crawling-gocd/)
+[![pypi](https://img.shields.io/pypi/v/crawling-gocd.svg)](https://pypi.org/project/crawling-gocd/)
+[![Build](https://travis-ci.org/play-code-tools/crawling-gocd.svg?branch=master)](https://travis-ci.org/play-code-tools/crawling-gocd)
 
 This project works for crawling the build histories of pipelines and calculate the metrics.
 
