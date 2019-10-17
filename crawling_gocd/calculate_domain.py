@@ -13,6 +13,11 @@ class CalculateStrategyHandler:
     def calculate(self, pipelines, results):
         return []
 
+class GlobalTimeRange:
+    def __init__(self, startTime, endTime):
+        self.startTime = startTime
+        self.endTime = endTime
+
 class Result:
     def __init__(self, pipelineName, metricsName, groupName, value):
         self.pipelineName = pipelineName

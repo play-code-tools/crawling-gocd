@@ -2,7 +2,6 @@ import unittest
 import os
 from crawling_gocd.portal import Portal
 from crawling_gocd.outputs import OutputCsv
-from crawling_gocd.inputs_parser import TimeRange
 
 class PortalTest(unittest.TestCase):
     def setUp(self):

@@ -3,7 +3,7 @@ import sys
 import logging
 from datetime import datetime, timedelta
 from crawling_gocd.gocd_domain import Pipeline
-from crawling_gocd.calculate_domain import InputsCalcConfig
+from crawling_gocd.calculate_domain import InputsCalcConfig, GlobalTimeRange
 
 
 class InputsParser:
@@ -55,7 +55,7 @@ class InputTimeParser:
     def getFixTimeRange(self, globalDict):
         startTime = globalDict.get("start_time", datetime(1970, 1, 1))
         endTime = globalDict.get("end_time", datetime.now())
-        return TimeRange(startTime, endTime)
+        return GlobalTimeRange(startTime, endTime)
 
     def getCycleTimeRange(self, globalDict):
         weekNum = globalDict.get("cycle_weeks")
@@ -63,9 +63,6 @@ class InputTimeParser:
 
         endTime = now - timedelta(days = now.weekday())
         startTime = endTime - timedelta(days = 7 * weekNum)
-        return TimeRange(startTime, endTime - timedelta(seconds = 1))
+        return GlobalTimeRange(startTime, endTime - timedelta(seconds = 1))
 
-class TimeRange:
-    def __init__(self, startTime, endTime):
-        self.startTime = startTime
-        self.endTime = endTime
+

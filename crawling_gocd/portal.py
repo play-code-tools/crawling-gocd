@@ -19,7 +19,7 @@ class Portal:
             pipeline, self.crawler), inputPipelines))
 
         results = self.calculator.work(pipelineWithFullData, [])
-        self.output.output(results)
+        self.output.output(results, self.globalTimeRange)
 
     def crawlingSinglePipeline(self, pipeline, crawler):
         mapper = CrawlingDataMapper()

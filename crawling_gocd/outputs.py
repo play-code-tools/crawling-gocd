@@ -5,25 +5,26 @@ from crawling_gocd.calculate_domain import Result
 
 
 class Output:
-    def output(self, results):
+    def output(self, results, globalTimeRange):
         pass
 
 class OutputCsv(Output):
     def __init__(self):
         self.fieldNames = ["pipelineName", "groupName"]
-        self.fileName = "crawling_output.csv"
+        self.fileNameTemplate = "crawling_output_{}_{}.csv"
 
-    def output(self, results):
+    def output(self, results, globalTimeRange):
         metricNames = set(list(map(lambda result: result.metricsName, results)))
         self.fieldNames += sorted(metricNames)
         formatOutputs = self.convertToFormatOutputs(results)
 
-        with open(self.fileName, mode="w") as csvFile:
+        fileName = self.generateCvsFileName(globalTimeRange)
+        with open(fileName, mode="w") as csvFile:
             writer = csv.DictWriter(csvFile, fieldnames=self.fieldNames, delimiter=',',
                                     quotechar='"', quoting=csv.QUOTE_MINIMAL)
             writer.writeheader()
             writer.writerows(formatOutputs)
-        logging.info("The metrics results see the crawling_output.csv file")
+        logging.info("The metrics results see the {} file".format(fileName))
 
     def convertToFormatOutputs(self, results):
         keyFunction = lambda r: (r.pipelineName, r.groupName)
@@ -37,3 +38,10 @@ class OutputCsv(Output):
                 output.update({t.metricsName: t.value})
             formatOutputs.append(output)
         return formatOutputs
+
+    def generateCvsFileName(self, globalTimeRange):
+        timeFormater = "%Y%m%d%H%M%S"
+        start = globalTimeRange.startTime.strftime(timeFormater)
+        end = globalTimeRange.endTime.strftime(timeFormater)
+    
+        return self.fileNameTemplate.format(start, end)
