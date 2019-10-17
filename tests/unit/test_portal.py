@@ -2,6 +2,7 @@ import unittest
 import os
 from crawling_gocd.portal import Portal
 from crawling_gocd.outputs import OutputCsv
+from crawling_gocd.inputs_parser import TimeRange
 
 class PortalTest(unittest.TestCase):
     def setUp(self):
@@ -24,5 +25,8 @@ class PortalTest(unittest.TestCase):
 
     def test_new_output_instance_correctly(self):
         self.assertTrue(type(Portal().output) == OutputCsv)
+
+    def test_get_global_time_range_correctly(self):
+        self.assertIsNotNone(Portal().getGlobalTimeRange())
 
     

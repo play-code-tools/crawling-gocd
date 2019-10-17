@@ -11,6 +11,7 @@ class Portal:
         self.calculator = self.assembleCalculator()
         self.output = self.newOutputInstance()
         self.crawler = self.newCrawler()
+        self.globalTimeRange = self.getGlobalTimeRange()
 
     def serve(self):
         inputPipelines = self.inputsParser.parsePipelineConfig()
@@ -40,3 +41,6 @@ class Portal:
     def newOutputInstance(self):
         inputOutputClass = self.inputsParser.outputCustomizeClazz()
         return inputOutputClass()
+
+    def getGlobalTimeRange(self):
+        return self.inputsParser.getGlobalTimeRange()

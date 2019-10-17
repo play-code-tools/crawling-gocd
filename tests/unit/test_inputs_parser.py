@@ -52,10 +52,9 @@ class InputTimeParserTest(unittest.TestCase):
             "cycle_weeks": 2
         }
         parser = InputTimeParser()
-        (globalStartTime, globalEndTime) = parser.parse(globalDict)
-        print(globalStartTime, globalEndTime)
-        self.assertEqual(str(globalStartTime), "2019-09-23 00:00:00")
-        self.assertEqual(str(globalEndTime), "2019-10-06 23:59:59")
+        globalTimeRange = parser.parse(globalDict)
+        self.assertEqual(str(globalTimeRange.startTime), "2019-09-23 00:00:00")
+        self.assertEqual(str(globalTimeRange.endTime), "2019-10-06 23:59:59")
 
     def test_should_return_correctly_fix_start_time_end_time(self):
         globalDict = {
@@ -64,9 +63,8 @@ class InputTimeParserTest(unittest.TestCase):
             "end_time": "2019-10-13 23:59:00"
         }
         parser = InputTimeParser()
-        (globalStartTime, globalEndTime) = parser.parse(globalDict)
-        print(globalStartTime, globalEndTime)
-        self.assertEqual(str(globalStartTime), "2019-09-30 01:00:00")
-        self.assertEqual(str(globalEndTime), "2019-10-13 23:59:00")
+        globalTimeRange = parser.parse(globalDict)
+        self.assertEqual(str(globalTimeRange.startTime), "2019-09-30 01:00:00")
+        self.assertEqual(str(globalTimeRange.endTime), "2019-10-13 23:59:00")
 
     

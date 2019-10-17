@@ -16,11 +16,11 @@ class InputsParser:
                 print("yaml file read failed, {}", exc)
 
     def parsePipelineConfig(self):
-        (globalStartTime, globalEndTime) = self.inputTimeParser.parse(self.inputs.get("global", {}))
-        logging.info("global_start_time: {}, global_end_time: {}".format(globalStartTime, globalEndTime))
+        globalTimeRange = self.getGlobalTimeRange()
+        logging.info("global_start_time: {}, global_end_time: {}".format(globalTimeRange.startTime, globalTimeRange.endTime))
 
         return list(map(lambda pipeline: self.mapSinglePipeline(
-            pipeline, globalStartTime, globalEndTime), self.inputs["pipelines"]))
+            pipeline, globalTimeRange.startTime, globalTimeRange.endTime), self.inputs["pipelines"]))
 
     def mapSinglePipeline(self, pipelineConfig, globalStartTime, globalEndTime):
         inputCalcConfig = InputsCalcConfig(pipelineConfig["calc_grouped_stages"], pipelineConfig.get(
@@ -39,6 +39,9 @@ class InputsParser:
         metrics = self.inputs["metrics"]
         four_key_metrics = metrics.get("four_key_metrics", [])
         return list(map(lambda m: getattr(sys.modules["crawling_gocd.four_key_metrics"], m), four_key_metrics))
+    
+    def getGlobalTimeRange(self):
+        return self.inputTimeParser.parse(self.inputs.get("global", {}))
 
 
 class InputTimeParser:
@@ -52,7 +55,7 @@ class InputTimeParser:
     def getFixTimeRange(self, globalDict):
         startTime = globalDict.get("start_time", datetime(1970, 1, 1))
         endTime = globalDict.get("end_time", datetime.now())
-        return (startTime, endTime)
+        return TimeRange(startTime, endTime)
 
     def getCycleTimeRange(self, globalDict):
         weekNum = globalDict.get("cycle_weeks")
@@ -60,4 +63,9 @@ class InputTimeParser:
 
         endTime = now - timedelta(days = now.weekday())
         startTime = endTime - timedelta(days = 7 * weekNum)
-        return (startTime, endTime - timedelta(seconds = 1))
+        return TimeRange(startTime, endTime - timedelta(seconds = 1))
+
+class TimeRange:
+    def __init__(self, startTime, endTime):
+        self.startTime = startTime
+        self.endTime = endTime
