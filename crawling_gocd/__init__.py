@@ -3,6 +3,6 @@ import crawling_gocd.outputs
 import logging
 
 name = "crawling_gocd"
-version = "1.0.0"
+version = "1.0.1"
 
 logging.basicConfig(level=logging.DEBUG)
