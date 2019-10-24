@@ -24,7 +24,7 @@ class InputsParser:
 
     def mapSinglePipeline(self, pipelineConfig, globalStartTime, globalEndTime):
         inputCalcConfig = InputsCalcConfig(pipelineConfig["calc_grouped_stages"], pipelineConfig.get(
-            "startTime", globalStartTime), pipelineConfig.get("endTime", globalEndTime))
+            "start_time", globalStartTime), pipelineConfig.get("end_time", globalEndTime))
         return Pipeline(pipelineConfig["name"], inputCalcConfig)
 
     def outputCustomizeClazz(self):

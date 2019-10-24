@@ -33,7 +33,7 @@ class ChangeFailPercentage(CalculateStrategyHandlerBase):
         runCount = len(list(filter(lambda history: history.hasStatusInStages(stageNames), pipelineHistories)))
         failedCount = len(list(filter(lambda history: history.hasFailedInStages(stageNames), pipelineHistories)))
 
-        if runCount == 0 and failedCount == 0:
+        if runCount == 0:
             return "N/A"
 
         return "{:.1%}".format(failedCount / runCount)
@@ -55,7 +55,7 @@ class ChangeFailPercentage_ignoredContinuousFailed(CalculateStrategyHandlerBase)
             if history.allPassedInStages(stageNames) and lastIsFailed == True:
                 lastIsFailed = False
 
-        if runCount == 0 and failedCount == 0:
+        if runCount == 0:
             return "N/A"
 
         return "{:.1%}".format(failedCount / runCount)

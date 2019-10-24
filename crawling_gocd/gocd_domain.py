@@ -33,7 +33,7 @@ class PipelineHistory:
         return "{ label: %s, scheduledTimestamp: %s, stages: %s }" % (self.label, str(self.scheduledTimestamp), str(", ".join(str(stage) for stage in self.stages)))
 
     def hasStatusInStages(self, stageNames):
-        return len(list(filter(lambda stage: stage.name in stageNames and stage.status != "Unknown", self.stages))) > 0
+        return len(list(filter(lambda stage: stage.name in stageNames and stage.status not in ("Unknown", "Cancelled"), self.stages))) > 0
     
     def hasFailedInStages(self, stageNames):
         return len(list(filter(lambda stage: stage.name in stageNames and stage.status == "Failed", self.stages))) > 0
