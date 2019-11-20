@@ -19,9 +19,9 @@ This project works for crawling the build histories of pipelines and calculate t
   pipenv run python -m unittest discover
   ```
 3. bump version(using bumversion)
-```
-pipenv shell bumpversion [major|minor|patch]
-```
+  ```
+  pipenv shell bumpversion [major|minor|patch]
+  ```
 
 ### Run
 1. Input configration in the file `crawling-gocd.yaml`
