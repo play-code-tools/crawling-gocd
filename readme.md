@@ -12,12 +12,16 @@ This project works for crawling the build histories of pipelines and calculate t
 ### Development
 1. Install the packages
   ```
-  pipenv sync
+  pipenv sync --dev
   ```
 2. Run test
   ```
   pipenv run python -m unittest discover
   ```
+3. bump version(using bumversion)
+```
+pipenv shell bumpversion [major|minor|patch]
+```
 
 ### Run
 1. Input configration in the file `crawling-gocd.yaml`
