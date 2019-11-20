@@ -23,7 +23,7 @@ class PortalTest(unittest.TestCase):
         self.assertEqual(len(calculator.strategyHandlers), 4)
 
     def test_new_output_instance_correctly(self):
-        self.assertTrue(type(Portal().output) == OutputCsv)
+        self.assertTrue(type(Portal().output[0]) == OutputCsv)
 
     def test_get_global_time_range_correctly(self):
         self.assertIsNotNone(Portal().getGlobalTimeRange())

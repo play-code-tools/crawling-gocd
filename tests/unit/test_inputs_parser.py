@@ -1,7 +1,5 @@
 import unittest
-import json
 from freezegun import freeze_time
-from datetime import datetime
 from crawling_gocd.inputs_parser import InputsParser, InputTimeParser
 from crawling_gocd.outputs import Output, OutputCsv
 
@@ -31,11 +29,19 @@ class InputsParserTest(unittest.TestCase):
         self.parser.inputs.update(
             {"output_class_name": "crawling_gocd.outputs.Output"})
         clazz = self.parser.outputCustomizeClazz()
-        self.assertTrue(isinstance(clazz(),  Output))
+        self.assertTrue(isinstance(clazz[0](),  Output))
+
+    def test_should_return_multiple_customize_type_class(self):
+        self.parser.inputs.update(
+            {"output_class_name": "crawling_gocd.outputs.Output; crawling_gocd.outputs.OutputCsv"}
+        )
+        classes = self.parser.outputCustomizeClazz()
+        self.assertTrue(isinstance(classes[0](),  Output))
+        self.assertTrue(isinstance(classes[1](),  OutputCsv))
 
     def test_should_return_default_type_class(self):
         clazz = self.parser.outputCustomizeClazz()
-        self.assertTrue(isinstance(clazz(), OutputCsv))
+        self.assertTrue(isinstance(clazz[0](), OutputCsv))
 
     def test_should_return_metrics_class(self):
         metricsClazz = self.parser.getMetrics()

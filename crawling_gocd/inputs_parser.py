@@ -32,7 +32,7 @@ class InputsParser:
         output_class_names = []
 
         for class_name in absolute_class_names:
-            partitions = class_name.rpartition(".")
+            partitions = class_name.strip().rpartition(".")
             output_class = getattr(sys.modules[partitions[0]], partitions[2])
             output_class_names.append(output_class)
 
