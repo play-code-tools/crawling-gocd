@@ -12,5 +12,6 @@ deploy:
     secure: SS0O/jDa0I6+fynW1NBXNLSfgGJYKYjn7NbxMPxfqFg6xSVe9ndrMQGjxOOuYrRYqeuwBfZU4rL5CLYrJ3+4XJvDrc6aEFCQuolmdDvTd+++Ky/PaEJKscilqpogKaMOMrMb+P2IQtPkw+1wUUFib6kbiwVhD7EbOhMR5e+cdvw2lshraGksQEGv0dzKQLB60H/xmG41DPtVequl+yysUvIQe6WvC1WvpHRHlzLPTiO3L2i3b7w8AuzJ60wGGeChmiXX+OFxbFZsT33Inz49Schy7aJGFjahL03COlSN9LYuW9ZyE0avAHekFzLr72ZBCZYb4Qr4ESfFaG8xAojEiJnP+GgWWq3q/KUQ0C9No/MPYNb3vcdm9g77yKR0g6EAzUVshAHJCvdc0u5OWTxRzLaUoe4jZlujr2D63eZdqA52f76debKwQQAQFz1hZ+n2tl+HXhX+Kd+al+AxccvU931lrvLr+x4JHhZBCWjs1888c3QNSfUmrFKpRAF1KJboEw7h9hddWkNPPftYmTw6MjUs4eSEHYi1jhEvguYPc8DV33oSgP41ohXT2wYORoO3+WsyRTbqamLJaZbKadAIVSq4FeyNVjDsx2mk/lumfpgrVgQnfSmEposGr+Kj26EnZ+E+HV27jVdDqzLmw6kGj//mIwCXsffppWBBrgbO0jc=
   skip_existing: true
   distributions: "sdist bdist_wheel"
+  skip_cleanup: true
   on:
     tags: true
