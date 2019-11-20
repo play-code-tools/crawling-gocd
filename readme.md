@@ -12,7 +12,7 @@ This project works for crawling the build histories of pipelines and calculate t
 ### Development
 1. Install the packages
   ```
-  pipenv install
+  pipenv sync
   ```
 2. Run test
   ```
