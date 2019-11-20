@@ -45,3 +45,10 @@ class OutputCsv(Output):
         end = globalTimeRange.endTime.strftime(timeFormater)
     
         return self.fileNameTemplate.format(start, end)
+
+
+class OutputTest(Output):
+    def __init__(self):
+        print("hello world")
+    def output(self, results, global_time_range):
+        print("it's in the output test")

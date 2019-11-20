@@ -28,12 +28,15 @@ class InputsParser:
         return Pipeline(pipelineConfig["name"], inputCalcConfig)
 
     def outputCustomizeClazz(self):
-        absoluteClassName = self.inputs.get("output_class_name", None)
-        if absoluteClassName == None:
-            return getattr(sys.modules["crawling_gocd.outputs"], "OutputCsv")
+        absolute_class_names = self.inputs.get("output_class_name", "crawling_gocd.outputs.OutputCsv").split(";")
+        output_class_names = []
 
-        partitions = absoluteClassName.rpartition(".")
-        return getattr(sys.modules[partitions[0]], partitions[2])
+        for class_name in absolute_class_names:
+            partitions = class_name.rpartition(".")
+            output_class = getattr(sys.modules[partitions[0]], partitions[2])
+            output_class_names.append(output_class)
+
+        return output_class_names
 
     def getMetrics(self):
         metrics = self.inputs["metrics"]
