@@ -2,7 +2,8 @@ import pathlib
 from setuptools import setup, find_packages
 
 HERE = pathlib.Path(__file__).parent
-README = (HERE / "README.pypi.md").read_text()
+print("here=>", HERE)
+README = (HERE / "readme.pypi.md").read_text()
 
 setup(
     name="crawling-gocd",
