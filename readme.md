@@ -22,6 +22,9 @@ This project works for crawling the build histories of pipelines and calculate t
   ```
   pipenv shell bumpversion [major|minor|patch]
   ```
+4. deploy to pypi
+Add a tag for new commit, then push them, the commit and tag, to origin.
+The Travis CI will auto deploy package into pypi after pass the build.
 
 ### Run
 1. Input configration in the file `crawling-gocd.yaml`
