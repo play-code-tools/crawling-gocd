@@ -13,6 +13,7 @@ wheel = "*"
 twine = "*"
 freezegun = "*"
 parameterized = "*"
+coveralls = "*"
 
 [packages]
 requests-html = "*"

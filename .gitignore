@@ -8,3 +8,4 @@ dist/
 build/
 crawling_gocd.egg-info/
 .idea
+.coverage
