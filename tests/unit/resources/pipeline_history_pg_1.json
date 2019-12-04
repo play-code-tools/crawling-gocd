@@ -145,6 +145,118 @@
                     "comment": null
                 },
                 {
+                    "pipelineId": 81340,
+                    "label": "227",
+                    "counterOrLabel": "227",
+                    "scheduled_date": "04 Dec, 2019 at 07:45:17 [+0000]",
+                    "scheduled_timestamp": 1575445476057,
+                    "buildCauseBy": "Triggered by changes",
+                    "modification_date": "about 16 hours ago",
+                    "materialRevisions": [
+                        {
+                            "revision": "370741855ca54a6a8438d60111db0d6def1d813f",
+                            "revision_href": "370741855ca54a6a8438d60111db0d6def1d813f",
+                            "user": "kwei <kwei@test.com>",
+                            "date": "2019-09-01T10:50:37Z",
+                            "changed": "true",
+                            "modifications": [
+                                {
+                                    "user": "kwei <kwei@test.com>",
+                                    "revision": "370741855ca54a6a8438d60111db0d6def1d813f",
+                                    "date": "2019-09-01T10:50:37Z",
+                                    "comment": "[WeiKun] #N/A fix: add supplier no name column for update option invoice dto",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "app",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/accounting.git",
+                            "materialName": "app-repo",
+                            "action": "Modified"
+                        },
+                        {
+                            "revision": "497206755482de7d27517989fde02d7cddf1949f",
+                            "revision_href": "497206755482de7d27517989fde02d7cddf1949f",
+                            "user": "Huang Yaming <yumminhuang@test.com>",
+                            "date": "2019-08-30T06:12:15Z",
+                            "changed": "false",
+                            "modifications": [
+                                {
+                                    "user": "Huang Yaming <yumminhuang@test.com>",
+                                    "revision": "497206755482de7d27517989fde02d7cddf1949f",
+                                    "date": "2019-08-30T06:12:15Z",
+                                    "comment": "[ymhuang] #N/A Sales services use -flyway to run flyway",
+                                    "modifiedFiles": []
+                                }
+                            ],
+                            "folder": "buildtools",
+                            "scmType": "Git",
+                            "location": "https://az_a_wwwops:******@code-management.test.com.cn/www/buildtools.git",
+                            "materialName": "devops-buildtools",
+                            "action": "Modified"
+                        }
+                    ],
+                    "stages": [
+                        {
+                            "stageName": "code-scan",
+                            "stageId": 217946,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/227/code-scan/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "test-integration",
+                            "stageId": 217947,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/227/test-integration/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "build",
+                            "stageId": 217949,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/227/build/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "changes"
+                        },
+                        {
+                            "stageName": "flyway-qa",
+                            "stageId": 217992,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/227/flyway-qa/7",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "7",
+                            "approvedBy": "wwwlll2001"
+                        },
+                        {
+                            "stageName": "deploy-qa",
+                            "stageId": 217993,
+                            "stageStatus": "Passed",
+                            "stageLocator": "go_service/227/deploy-qa/1",
+                            "getCanRun": "true",
+                            "getCanCancel": "false",
+                            "scheduled": "true",
+                            "stageCounter": "1",
+                            "approvedBy": "wwwlll2001"
+                        }
+                    ],
+                    "revision": "370741855ca54a6a8438d60111db0d6def1d813f",
+                    "comment": null
+                },
+                {
                     "pipelineId": 81310,
                     "label": "225",
                     "counterOrLabel": "225",

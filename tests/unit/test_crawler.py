@@ -39,8 +39,8 @@ class CrawlerTest(unittest.TestCase):
 
     def test_should_filter_data_when_data_is_over_time(self):
         pipelineHistories = fixture.getPipelineHistories(self.filePage1)
-        result=self.crawler.filterPipelinesPerPage(pipelineHistories, datetime.fromtimestamp(1567075172220 / 1000), datetime.fromtimestamp(1567335377730/1000))
-        self.assertEqual(len(result), 8)
+        result=self.crawler.filterPipelinesPerPage(pipelineHistories, datetime.fromtimestamp(1567075172220 / 1000))
+        self.assertEqual(len(result), 10)
 
     def test_should_get_pipeline_history_correctly(self):
         def side_effect(arg):
@@ -53,7 +53,7 @@ class CrawlerTest(unittest.TestCase):
 
         self.crawler.getResource=MagicMock(side_effect=side_effect)
         pipelineHistories=self.crawler.getPipelineHistories("go_service", datetime.fromtimestamp(1567052779277/1000), datetime.fromtimestamp(1567335377730/1000))
-        self.assertEqual(len(pipelineHistories), 16)
+        self.assertEqual(len(pipelineHistories), 18)
 
 if __name__ == '__main__':
     unittest.main()

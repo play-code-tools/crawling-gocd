@@ -175,7 +175,7 @@ global:
   start_time: 2019-08-26 00:00:00
   end_time: 2019-09-27 23:59:59
 
-output_class_name: crawling_gocd.outputs.OutputCsv;crawling_gocd.outputs.OutputTest
+output_class_name: crawling_gocd.outputs.OutputCsv
 metrics:
   four_key_metrics:
     - DeploymentFrequency

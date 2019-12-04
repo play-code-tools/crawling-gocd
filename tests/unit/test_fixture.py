@@ -5,6 +5,7 @@ from crawling_gocd.crawler import CrawlingDataMapper
 from crawling_gocd.gocd_domain import Pipeline
 from crawling_gocd.calculate_domain import InputsCalcConfig
 from crawling_gocd.calculate_domain import Result
+from crawling_gocd.outputs import Output
 
 def getPipelineHistories(filePath):
     with open(filePath, 'r') as f:
@@ -17,7 +18,7 @@ def generatePipeline():
     pipelineHistories = getPipelineHistories(filePage1)
     mapper = CrawlingDataMapper()
 
-    pipeline = Pipeline("go_service", InputsCalcConfig({"qa": ["flyway-qa", "deploy-qa"]}, datetime.datetime(1970, 1, 1), datetime.datetime.now()))
+    pipeline = Pipeline("go_service", InputsCalcConfig({"qa": ["flyway-qa", "deploy-qa"]}, datetime.datetime(1970, 1, 1), datetime.datetime(2019, 9, 2)))
     pipeline.setHistories(mapper.mapPipelineHistory(pipelineHistories))
     return pipeline
 
@@ -30,3 +31,9 @@ def getResults():
         Result("account-management-normal-master", "MeanTimeToRestore", "ci", "56(mins)"),
         Result("account-management-normal-master", "MeanTimeToRestore", "qa", "53(mins)"),
     ]
+
+class OutputTest(Output):
+    def __init__(self):
+        print("hello world")
+    def output(self, results, global_time_range):
+        print("it's in the output test")

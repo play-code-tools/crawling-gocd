@@ -2,12 +2,16 @@ import unittest
 import os
 from crawling_gocd.portal import Portal
 from crawling_gocd.outputs import OutputCsv
+from crawling_gocd.inputs_parser import InputsParser
 
 class PortalTest(unittest.TestCase):
     def setUp(self):
         os.environ["GOCD_SITE"] = "test.com"
         os.environ["GOCD_USER"] = "test_user"
         os.environ["GOCD_PASSWORD"] = "123456"
+
+        self.portal = Portal()
+        self.portal.inputsParser = InputsParser("tests/unit/resources/crawling-gocd.yaml")
 
     def test_new_crawler_correctly(self):
         self.assertIsNotNone(Portal().crawler)

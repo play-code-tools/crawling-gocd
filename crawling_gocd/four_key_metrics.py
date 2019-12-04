@@ -1,3 +1,4 @@
+from datetime import datetime
 from crawling_gocd.calculate_domain import CalculateStrategyHandler, Result
 
 class CalculateStrategyHandlerBase(CalculateStrategyHandler):
@@ -8,30 +9,40 @@ class CalculateStrategyHandlerBase(CalculateStrategyHandler):
 
     def calculateSingle(self, pipeline, results):
         for groupedStage in pipeline.calcConfig.groupedStages.items():
-            value = self.valueOfSingleGroupedStage(pipeline.histories, groupedStage[1])
-            results.append(Result(pipeline.name, self.getMetricName(), groupedStage[0], value))
-    
+            value = self.valueOfSingleGroupedStage(
+                pipeline.histories, groupedStage[1], pipeline.calcConfig.startTime, pipeline.calcConfig.endTime)
+            results.append(
+                Result(pipeline.name, self.getMetricName(), groupedStage[0], value))
+
     def getMetricName(self):
         return ""
 
-    def valueOfSingleGroupedStage(self, pipelineHistories, stageNames):
+    def valueOfSingleGroupedStage(self, pipelineHistories, stageNames, startTime, endTime):
         return 0
 
+    def filterByTimeRange(self, pipelineHistories, startTime, endTime):
+        return list(filter(lambda x: datetime.timestamp(startTime) <= (int(x.scheduledTimestamp) / 1000) <= datetime.timestamp(endTime), 
+            pipelineHistories))
 
 class DeploymentFrequency(CalculateStrategyHandlerBase):
     def getMetricName(self):
         return "DeploymentFrequency"
 
-    def valueOfSingleGroupedStage(self, pipelineHistories, stageNames):
-        return len(list(filter(lambda history: history.hasStatusInStages(stageNames), pipelineHistories)))
+    def valueOfSingleGroupedStage(self, pipelineHistories, stageNames, startTime, endTime):
+        filteredHistories = self.filterByTimeRange(pipelineHistories, startTime, endTime)
+        return len(list(filter(lambda history: history.hasStatusInStages(stageNames), filteredHistories)))
 
 class ChangeFailPercentage(CalculateStrategyHandlerBase):
     def getMetricName(self):
         return "ChangeFailPercentage"
 
-    def valueOfSingleGroupedStage(self, pipelineHistories, stageNames):
-        runCount = len(list(filter(lambda history: history.hasStatusInStages(stageNames), pipelineHistories)))
-        failedCount = len(list(filter(lambda history: history.hasFailedInStages(stageNames), pipelineHistories)))
+    def valueOfSingleGroupedStage(self, pipelineHistories, stageNames, startTime, endTime):
+        filteredHistories = self.filterByTimeRange(pipelineHistories, startTime, endTime)
+
+        runCount = len(list(filter(
+            lambda history: history.hasStatusInStages(stageNames), filteredHistories)))
+        failedCount = len(list(filter(
+            lambda history: history.hasFailedInStages(stageNames), filteredHistories)))
 
         if runCount == 0:
             return "N/A"
@@ -42,16 +53,18 @@ class ChangeFailPercentage_ignoredContinuousFailed(CalculateStrategyHandlerBase)
     def getMetricName(self):
         return "ChangeFailPercentage_2"
 
-    def valueOfSingleGroupedStage(self, pipelineHistories, stageNames):
-        runCount = len(list(filter(lambda history: history.hasStatusInStages(stageNames), pipelineHistories)))
-        
-        pipelineHistories.sort(key=lambda history: history.label)
+    def valueOfSingleGroupedStage(self, pipelineHistories, stageNames, startTime, endTime):
+        filteredHistories = self.filterByTimeRange(pipelineHistories, startTime, endTime)
+        runCount = len(list(filter(
+            lambda history: history.hasStatusInStages(stageNames), filteredHistories)))
+
+        filteredHistories.sort(key=lambda history: history.label)
         failedCount, lastIsFailed = 0, False
-        for history in pipelineHistories:
+        for history in filteredHistories:
             if history.hasFailedInStages(stageNames) and lastIsFailed == False:
                 failedCount += 1
                 lastIsFailed = True
-            
+
             if history.allPassedInStages(stageNames) and lastIsFailed == True:
                 lastIsFailed = False
 
@@ -60,15 +73,17 @@ class ChangeFailPercentage_ignoredContinuousFailed(CalculateStrategyHandlerBase)
 
         return "{:.1%}".format(failedCount / runCount)
 
+
 class MeanTimeToRestore(CalculateStrategyHandlerBase):
     def getMetricName(self):
         return "MeanTimeToRestore"
 
-    def valueOfSingleGroupedStage(self, pipelineHistories, stageNames):
-        restoreTotalTime, failedCount, latestFailedScheduled = 0, 0, 0
+    def valueOfSingleGroupedStage(self, pipelineHistories, stageNames, startTime, endTime):
+        filteredHistories = self.filterByTimeRangeAndEndBySuccessfulStatus(pipelineHistories, stageNames, startTime, endTime)
 
-        pipelineHistories.sort(key=lambda history: history.scheduledTimestamp)
-        for history in pipelineHistories:
+        restoreTotalTime, failedCount, latestFailedScheduled = 0, 0, 0
+        filteredHistories.sort(key=lambda history: history.scheduledTimestamp)
+        for history in filteredHistories:
             if history.hasFailedInStages(stageNames) and latestFailedScheduled == 0:
                 failedCount += 1
                 latestFailedScheduled = history.scheduledTimestamp
@@ -76,7 +91,7 @@ class MeanTimeToRestore(CalculateStrategyHandlerBase):
             if history.allPassedInStages(stageNames) and latestFailedScheduled != 0:
                 restoreTotalTime += history.scheduledTimestamp - latestFailedScheduled
                 latestFailedScheduled = 0
-        
+
         if latestFailedScheduled != 0 and failedCount > 0:
             failedCount -= 1
 
@@ -85,5 +100,12 @@ class MeanTimeToRestore(CalculateStrategyHandlerBase):
 
         return "%s(mins)" % round(restoreTotalTime / failedCount / 1000 / 60)
 
+    def filterByTimeRangeAndEndBySuccessfulStatus(self, pipelineHistories, stageNames, startTime, endTime):
+        histories = sorted((h for h in pipelineHistories if h.hasFailedInStages(stageNames) or h.allPassedInStages(stageNames)), key = lambda history: int(history.label))
 
-    
+        historiesInTimeRange = self.filterByTimeRange(histories, startTime, endTime)
+        lastHistory = historiesInTimeRange[-1]
+        if lastHistory.allPassedInStages(stageNames):
+            return historiesInTimeRange
+        else:
+            return historiesInTimeRange + list(filter(lambda h: int(h.label) > int(lastHistory.label) and h.allPassedInStages(stageNames), histories))[0]

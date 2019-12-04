@@ -43,7 +43,7 @@ class Crawler:
                     break
 
                 data = data + self.filterPipelinesPerPage(
-                        pipelineHistories, startTime, endTime)
+                        pipelineHistories, startTime)
 
                 if self.canStop(pipelineHistories, startTime):
                     break
@@ -54,8 +54,8 @@ class Crawler:
                 break
         return data
 
-    def filterPipelinesPerPage(self, pipelines, startTime, endTime):
-        return list(filter(lambda x: datetime.timestamp(startTime) <= (int(x["scheduled_timestamp"]) / 1000) <= datetime.timestamp(endTime), pipelines))
+    def filterPipelinesPerPage(self, pipelines, startTime):
+        return list(filter(lambda x: datetime.timestamp(startTime) <= (int(x["scheduled_timestamp"]) / 1000), pipelines))
 
     def canStop(self, pipelines, startTime):
         scheduledTimestatmps = list(
