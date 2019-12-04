@@ -1,3 +1,4 @@
+import abc
 from datetime import datetime
 from crawling_gocd.calculate_domain import CalculateStrategyHandler, Result
 
@@ -14,11 +15,13 @@ class CalculateStrategyHandlerBase(CalculateStrategyHandler):
             results.append(
                 Result(pipeline.name, self.getMetricName(), groupedStage[0], value))
 
+    @abc.abstractmethod
     def getMetricName(self):
-        return ""
+        pass
 
+    @abc.abstractmethod
     def valueOfSingleGroupedStage(self, pipelineHistories, stageNames, startTime, endTime):
-        return 0
+        pass
 
     def filterByTimeRange(self, pipelineHistories, startTime, endTime):
         return list(filter(lambda x: datetime.timestamp(startTime) <= (int(x.scheduledTimestamp) / 1000) <= datetime.timestamp(endTime), 
