@@ -1,7 +1,7 @@
 import yaml
 import sys
 import logging
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from crawling_gocd.gocd_domain import Pipeline
 from crawling_gocd.calculate_domain import InputsCalcConfig, GlobalTimeRange
 
@@ -56,7 +56,7 @@ class InputTimeParser:
             return self.getFixTimeRange(globalDict)
 
     def getFixTimeRange(self, globalDict):
-        startTime = globalDict.get("start_time", datetime(1970, 1, 1))
+        startTime = globalDict.get("start_time", datetime(1970, 1, 1, tzinfo=timezone.utc))
         endTime = globalDict.get("end_time", datetime.now())
         return GlobalTimeRange(startTime, endTime)
 

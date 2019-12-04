@@ -108,4 +108,6 @@ class MeanTimeToRestore(CalculateStrategyHandlerBase):
         if lastHistory.allPassedInStages(stageNames):
             return historiesInTimeRange
         else:
-            return historiesInTimeRange + list(filter(lambda h: int(h.label) > int(lastHistory.label) and h.allPassedInStages(stageNames), histories))[0]
+            lastFixedPipeline = list(filter(lambda h: int(h.label) > int(lastHistory.label) and h.allPassedInStages(stageNames), histories))[0]
+            historiesInTimeRange.append(lastFixedPipeline)
+            return historiesInTimeRange

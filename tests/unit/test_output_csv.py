@@ -1,6 +1,6 @@
 import unittest
 import csv
-from datetime import datetime
+from datetime import datetime, timezone
 from crawling_gocd.outputs import OutputCsv
 from crawling_gocd.calculate_domain import GlobalTimeRange
 import tests.unit.test_fixture as fixture
@@ -8,7 +8,7 @@ import tests.unit.test_fixture as fixture
 class OutputCsvTest(unittest.TestCase):
     def setUp(self):
         self.outputCsv = OutputCsv()
-        self.globalTimeRange = GlobalTimeRange(datetime(2019, 10, 15, 0), datetime(2019, 10, 17, 23, 59, 59))
+        self.globalTimeRange = GlobalTimeRange(datetime(2019, 10, 15, 0, tzinfo=timezone.utc), datetime(2019, 10, 17, 23, 59, 59, tzinfo=timezone.utc))
         self.fileName = "crawling_output_20191015000000_20191017235959.csv"
 
     def test_output(self):

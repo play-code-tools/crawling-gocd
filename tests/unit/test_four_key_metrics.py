@@ -16,7 +16,7 @@ class DeploymentFrequencyTest(unittest.TestCase):
         handler = DeploymentFrequency()
         results = handler.calculate([self.pipeline], [])
         self.assertEqual("".join(str(x) for x in results),
-                         "{ pipelineName: go_service, metricsName: DeploymentFrequency, groupName: qa, value: 6 }")
+                         "{ pipelineName: go_service, metricsName: DeploymentFrequency, groupName: qa, value: 5 }")
 
 
 class ChangeFailPercentageTest(unittest.TestCase):
@@ -27,7 +27,7 @@ class ChangeFailPercentageTest(unittest.TestCase):
         handler = ChangeFailPercentage()
         results = handler.calculate([self.pipeline], [])
         self.assertEqual("".join(str(x) for x in results),
-                         "{ pipelineName: go_service, metricsName: ChangeFailPercentage, groupName: qa, value: 16.7% }")
+                         "{ pipelineName: go_service, metricsName: ChangeFailPercentage, groupName: qa, value: 40.0% }")
 
 class MeanTimeToRestoreTest(unittest.TestCase):
     def setUp(self):
@@ -37,4 +37,4 @@ class MeanTimeToRestoreTest(unittest.TestCase):
         handler = MeanTimeToRestore()
         results = handler.calculate([self.pipeline], [])
         self.assertEqual("".join(str(x) for x in results),
-                         "{ pipelineName: go_service, metricsName: MeanTimeToRestore, groupName: qa, value: 69(mins) }")
+                         "{ pipelineName: go_service, metricsName: MeanTimeToRestore, groupName: qa, value: 837(mins) }")

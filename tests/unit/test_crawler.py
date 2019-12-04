@@ -2,7 +2,7 @@ import os
 import unittest
 import json
 import tests.unit.test_fixture as fixture
-from datetime import datetime
+from datetime import datetime, timezone
 from crawling_gocd.gocd_domain import Organization
 from crawling_gocd.crawler import Crawler
 from unittest.mock import MagicMock
@@ -31,16 +31,16 @@ class CrawlerTest(unittest.TestCase):
 
     def test_should_return_true_when_data_is_over_time(self):
         pipelineHistories = fixture.getPipelineHistories(self.filePage1)
-        self.assertTrue(self.crawler.canStop(pipelineHistories, datetime.fromtimestamp(1567075172220/1000)))
+        self.assertTrue(self.crawler.canStop(pipelineHistories, datetime(2019, 8, 29, 10, 40, tzinfo=timezone.utc)))
 
     def test_should_return_false_when_data_is_not_over_time(self):
         pipelineHistories = fixture.getPipelineHistories(self.filePage1)
-        self.assertFalse(self.crawler.canStop(pipelineHistories, datetime.fromtimestamp(1567075172200/1000)))
+        self.assertFalse(self.crawler.canStop(pipelineHistories, datetime(2019, 8, 29, 8, 39, tzinfo=timezone.utc)))
 
     def test_should_filter_data_when_data_is_over_time(self):
         pipelineHistories = fixture.getPipelineHistories(self.filePage1)
-        result=self.crawler.filterPipelinesPerPage(pipelineHistories, datetime.fromtimestamp(1567075172220 / 1000))
-        self.assertEqual(len(result), 10)
+        result=self.crawler.filterPipelinesPerPage(pipelineHistories, datetime(2019, 8, 29, 10, 40, tzinfo=timezone.utc))
+        self.assertEqual(len(result), 9)
 
     def test_should_get_pipeline_history_correctly(self):
         def side_effect(arg):
@@ -52,8 +52,7 @@ class CrawlerTest(unittest.TestCase):
                 return json.load(f)
 
         self.crawler.getResource=MagicMock(side_effect=side_effect)
-        pipelineHistories=self.crawler.getPipelineHistories("go_service", datetime.fromtimestamp(1567052779277/1000), datetime.fromtimestamp(1567335377730/1000))
+        pipelineHistories=self.crawler.getPipelineHistories("go_service", datetime(2019, 8, 29, 3, 52, tzinfo=timezone.utc), 
+            datetime(2019, 9, 2, 4, tzinfo=timezone.utc))
         self.assertEqual(len(pipelineHistories), 18)
 
-if __name__ == '__main__':
-    unittest.main()

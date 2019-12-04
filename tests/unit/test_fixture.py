@@ -1,6 +1,6 @@
 import json
 import itertools
-import datetime
+from datetime import datetime, timezone
 from crawling_gocd.crawler import CrawlingDataMapper
 from crawling_gocd.gocd_domain import Pipeline
 from crawling_gocd.calculate_domain import InputsCalcConfig
@@ -18,7 +18,8 @@ def generatePipeline():
     pipelineHistories = getPipelineHistories(filePage1)
     mapper = CrawlingDataMapper()
 
-    pipeline = Pipeline("go_service", InputsCalcConfig({"qa": ["flyway-qa", "deploy-qa"]}, datetime.datetime(1970, 1, 1), datetime.datetime(2019, 9, 2)))
+    pipeline = Pipeline("go_service", InputsCalcConfig({"qa": ["flyway-qa", "deploy-qa"]}, 
+        datetime(1970, 1, 1, tzinfo=timezone.utc), datetime(2019, 8, 31, 8, 12, tzinfo=timezone.utc)))
     pipeline.setHistories(mapper.mapPipelineHistory(pipelineHistories))
     return pipeline
 
