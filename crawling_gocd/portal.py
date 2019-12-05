@@ -1,4 +1,6 @@
 import os
+import logging
+import sys
 
 from crawling_gocd.calculator import Calculator
 from crawling_gocd.crawler import Crawler, CrawlingDataMapper
@@ -17,16 +19,19 @@ class Portal:
     def serve(self):
         input_pipelines = self.inputsParser.parsePipelineConfig()
         pipeline_with_full_data = list(map(lambda pipeline: self.crawlingSinglePipeline(
-            pipeline, self.crawler), input_pipelines))
+            pipeline), input_pipelines))
 
         results = self.calculator.work(pipeline_with_full_data, [])
 
         for o in self.output:
-            o.output(results, self.globalTimeRange)
+            try:
+                o.output(results, self.globalTimeRange)
+            except:
+                logging.warning("output failed class {}".format(type(0).__name__), sys.exc_info())
 
-    def crawlingSinglePipeline(self, pipeline, crawler):
+    def crawlingSinglePipeline(self, pipeline):
         mapper = CrawlingDataMapper()
-        histories = crawler.getPipelineHistories(
+        histories = self.crawler.getPipelineHistories(
             pipeline.name, pipeline.calcConfig.startTime, pipeline.calcConfig.endTime)
         pipeline.histories = mapper.mapPipelineHistory(histories)
         return pipeline
