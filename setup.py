@@ -7,7 +7,7 @@ README = (HERE / "readme.pypi.md").read_text()
 
 setup(
     name="crawling-gocd",
-    version="1.2.4",
+    version="1.3.0",
     description="crawling the gocd build histories of pipelines and calculate the metrics",
     long_description=README,
     long_description_content_type="text/markdown",
