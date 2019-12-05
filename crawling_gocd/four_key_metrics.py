@@ -105,8 +105,11 @@ class MeanTimeToRestore(CalculateStrategyHandlerBase):
 
     def filterByTimeRangeAndEndBySuccessfulStatus(self, pipelineHistories, stageNames, startTime, endTime):
         histories = sorted((h for h in pipelineHistories if h.hasFailedInStages(stageNames) or h.allPassedInStages(stageNames)), key = lambda history: int(history.label))
-
         historiesInTimeRange = self.filterByTimeRange(histories, startTime, endTime)
+        print("==>", startTime, endTime, historiesInTimeRange)
+        if len(historiesInTimeRange) == 0:
+            return []
+
         lastHistory = historiesInTimeRange[-1]
         if lastHistory.allPassedInStages(stageNames):
             return historiesInTimeRange
