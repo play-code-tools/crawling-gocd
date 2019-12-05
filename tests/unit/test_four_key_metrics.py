@@ -22,22 +22,34 @@ class DeploymentFrequencyTest(unittest.TestCase):
 class ChangeFailPercentageTest(unittest.TestCase):
     def setUp(self):
         self.pipeline = fixture.generatePipeline()
+        self.handler = ChangeFailPercentage()
 
     def test_should_calculate_change_fail_percentage_correctly(self):
-        handler = ChangeFailPercentage()
-        results = handler.calculate([self.pipeline], [])
+        results = self.handler.calculate([self.pipeline], [])
         self.assertEqual("".join(str(x) for x in results),
                          "{ pipelineName: go_service, metricsName: ChangeFailPercentage, groupName: qa, value: 40.0% }")
+
+    def test_should_return_NA_when_zero_deployment(self):
+        self.pipeline.calcConfig.endTime = datetime.datetime(2019, 8, 29, 8, 34, tzinfo=datetime.timezone.utc)
+        results = self.handler.calculate([self.pipeline], [])
+        self.assertEqual("".join(str(x) for x in results),
+                         "{ pipelineName: go_service, metricsName: ChangeFailPercentage, groupName: qa, value: N/A }")
 
 class ChangeFailPercentage_ignoredContinuousFailedTest(unittest.TestCase):
     def setUp(self):
         self.pipeline = fixture.generatePipeline()
+        self.handler = ChangeFailPercentage_ignoredContinuousFailed()
 
     def test_should_calculate_change_fail_percentage_correctly(self):
-        handler = ChangeFailPercentage_ignoredContinuousFailed()
-        results = handler.calculate([self.pipeline], [])
+        results = self.handler.calculate([self.pipeline], [])
         self.assertEqual("".join(str(x) for x in results),
                          "{ pipelineName: go_service, metricsName: ChangeFailPercentage_2, groupName: qa, value: 40.0% }")
+
+    def test_return_NA_when_zero_deployment(self):
+        self.pipeline.calcConfig.endTime = datetime.datetime(2019, 8, 29, 8, 34, tzinfo=datetime.timezone.utc)
+        results = self.handler.calculate([self.pipeline], [])
+        self.assertEqual("".join(str(x) for x in results),
+                         "{ pipelineName: go_service, metricsName: ChangeFailPercentage_2, groupName: qa, value: N/A }")
 
 class MeanTimeToRestoreTest(unittest.TestCase):
     def setUp(self):
@@ -55,7 +67,14 @@ class MeanTimeToRestoreTest(unittest.TestCase):
         self.assertEqual("".join(str(x) for x in results),
                          "{ pipelineName: go_service, metricsName: MeanTimeToRestore, groupName: qa, value: 69(mins) }")
 
-    def test_should_return_NA_when_no_depolyment(self):
+    def test_should_calculate_mean_time_to_restore_when_newest_is_failed(self):
+        self.pipeline.histories.pop(-1)
+        self.pipeline.calcConfig.endTime = datetime.datetime(2019, 9, 2, tzinfo=datetime.timezone.utc)
+        results = self.handler.calculate([self.pipeline], [])
+        self.assertEqual("".join(str(x) for x in results),
+                         "{ pipelineName: go_service, metricsName: MeanTimeToRestore, groupName: qa, value: 1229(mins) }")
+    
+    def test_should_return_NA_when_zero_depolyment(self):
         self.pipeline.calcConfig.endTime = datetime.datetime(2019, 8, 29, 8, 34, tzinfo=datetime.timezone.utc)
         results = self.handler.calculate([self.pipeline], [])
         self.assertEqual("".join(str(x) for x in results),

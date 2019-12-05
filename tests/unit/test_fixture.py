@@ -11,7 +11,8 @@ def getPipelineHistories(filePath):
     with open(filePath, 'r') as f:
         page1 = json.load(f)
     pipelineHistoriesList = list(map(lambda x: x["history"], page1["groups"]))
-    return list(itertools.chain(*pipelineHistoriesList))
+    pipelineHistoriesList = list(itertools.chain(*pipelineHistoriesList))
+    return sorted(pipelineHistoriesList, key=lambda history: history["label"])
 
 def generatePipeline():
     filePage1 = "tests/unit/resources/pipeline_history_pg_1.json"

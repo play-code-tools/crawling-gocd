@@ -96,7 +96,7 @@ class MeanTimeToRestore(CalculateStrategyHandlerBase):
                 latestFailedScheduled = 0
 
         if latestFailedScheduled != 0 and failedCount > 0:
-            failedCount -= 1
+            restoreTotalTime += datetime.timestamp(endTime) * 1000 - latestFailedScheduled
 
         if failedCount == 0:
             return "N/A"
@@ -106,7 +106,6 @@ class MeanTimeToRestore(CalculateStrategyHandlerBase):
     def filterByTimeRangeAndEndBySuccessfulStatus(self, pipelineHistories, stageNames, startTime, endTime):
         histories = sorted((h for h in pipelineHistories if h.hasFailedInStages(stageNames) or h.allPassedInStages(stageNames)), key = lambda history: int(history.label))
         historiesInTimeRange = self.filterByTimeRange(histories, startTime, endTime)
-        print("==>", startTime, endTime, historiesInTimeRange)
         if len(historiesInTimeRange) == 0:
             return []
 
@@ -114,6 +113,10 @@ class MeanTimeToRestore(CalculateStrategyHandlerBase):
         if lastHistory.allPassedInStages(stageNames):
             return historiesInTimeRange
         else:
-            lastFixedPipeline = list(filter(lambda h: int(h.label) > int(lastHistory.label) and h.allPassedInStages(stageNames), histories))[0]
+            allFixedList = list(filter(lambda h: int(h.label) > int(lastHistory.label) and h.allPassedInStages(stageNames), histories))
+            if len(allFixedList) == 0:
+                return historiesInTimeRange
+
+            lastFixedPipeline = histories[-1]
             historiesInTimeRange.append(lastFixedPipeline)
             return historiesInTimeRange

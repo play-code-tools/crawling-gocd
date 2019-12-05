@@ -19,7 +19,7 @@ class CrawlingDataMapperTest(unittest.TestCase):
             StageHistory("217982", "flyway-qa", "Passed"),
             StageHistory("217983", "deploy-qa", "Passed")
         ])
-        self.assertEqual(str(result[0]), str(givenData))
+        self.assertEqual(str(result[-1]), str(givenData))
 
 if __name__ == '__main__':
     unittest.main()
