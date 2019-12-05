@@ -1,2 +1,7 @@
 [run]
 source = crawling_gocd
+
+[report]
+exclude_lines=
+    pragma: no cover
+    pass
